@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  trackNumber: 1
+  cd_id: 
+
+two:
+  title: MyString
+  trackNumber: 1
+  cd_id: 

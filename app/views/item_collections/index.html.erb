@@ -1,0 +1,29 @@
+<h1>Listing item_collections</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Begindate</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @item_collections.each do |item_collection| %>
+      <tr>
+        <td><%= item_collection.name %></td>
+        <td><%= item_collection.beginDate %></td>
+        <td><%= item_collection.user %></td>
+        <td><%= link_to 'Show', item_collection %></td>
+        <td><%= link_to 'Edit', edit_item_collection_path(item_collection) %></td>
+        <td><%= link_to 'Destroy', item_collection, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Item collection', new_item_collection_path %>

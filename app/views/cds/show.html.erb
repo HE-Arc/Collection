@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Artist:</strong>
+  <%= @cd.artist %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @cd.name %>
+</p>
+
+<p>
+  <strong>Editor:</strong>
+  <%= @cd.editor %>
+</p>
+
+<p>
+  <strong>Cover:</strong>
+  <%= @cd.cover %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @cd.year %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @cd.gender %>
+</p>
+
+<p>
+  <strong>Purchasedate:</strong>
+  <%= @cd.purchaseDate %>
+</p>
+
+<p>
+  <strong>Item collection:</strong>
+  <%= @cd.item_collection %>
+</p>
+
+<%= link_to 'Edit', edit_cd_path(@cd) %> |
+<%= link_to 'Back', cds_path %>

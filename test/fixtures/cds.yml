@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  artist: MyString
+  name: MyString
+  editor: MyString
+  cover: MyString
+  year: 1
+  gender: MyString
+  purchaseDate: 2015-02-27
+  item_collection_id: 
+
+two:
+  artist: MyString
+  name: MyString
+  editor: MyString
+  cover: MyString
+  year: 1
+  gender: MyString
+  purchaseDate: 2015-02-27
+  item_collection_id: 
