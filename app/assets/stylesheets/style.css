@@ -1,0 +1,10 @@
+/*
+Add custom CSS here
+*/
+
+#footer
+{
+    background-color: #595959;
+    color: #ffffff;
+    min-height: 50px;
+}
