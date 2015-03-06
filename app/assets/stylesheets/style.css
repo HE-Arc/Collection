@@ -1,0 +1,13 @@
+/*
+Add custom CSS here
+*/
+
+#footer {
+    background-color: #595959;
+    color: #ffffff;
+    min-height: 50px;
+}
+
+#dd-menu-sort {
+    padding-right: 20px; !important;
+}
