@@ -1,5 +1,10 @@
 <h1>Listing users</h1>
-
+<% if user_signed_in? %>
+  <div>Signed in as... <%= current_user.email %></div>
+  
+<% else%>
+<div> not signed in</div>
+  <%end %>
 <table>
   <thead>
     <tr>

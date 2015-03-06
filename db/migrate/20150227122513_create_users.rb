@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :pseudo
       t.boolean :anonym
       t.date :birthdate
-      t.string :email
+      #t.string :email
       t.string :password
 
       t.timestamps
