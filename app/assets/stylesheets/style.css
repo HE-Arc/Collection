@@ -1,13 +1,42 @@
 /*
-Add custom CSS here
+Custom CSS here
 */
 
-#footer {
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
+#footer {  
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
     background-color: #595959;
     color: #ffffff;
-    min-height: 50px;
 }
 
 #dd-menu-sort {
-    padding-right: 20px; !important;
+    padding-right: 20px !important;
+}
+
+.cover-image {
+  padding-right: 0;
+}
+
+.album-details {
+    list-style-type: none;    
+}
+
+.metadata-header {
+    font-weight: bold;
+}
+
+.metadata-header:after {
+    content: ":";
 }
