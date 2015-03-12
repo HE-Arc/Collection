@@ -83,6 +83,7 @@ test:
 #
 production:
   <<: *default
-  database: Collection_production
-  username: Collection
-  password: <%= ENV['COLLECTION_DATABASE_PASSWORD'] %>
+  database: collection_production
+  username: collection
+  password: collection
+  host: localhost
