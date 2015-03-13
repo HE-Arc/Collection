@@ -10,6 +10,7 @@ class CdsController < ApplicationController
   # GET /cds/1
   # GET /cds/1.json
   def show
+    @tracks = Track.all
   end
 
   # GET /cds/new
