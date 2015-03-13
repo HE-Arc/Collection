@@ -5,4 +5,6 @@ class User < ActiveRecord::Base
   validates :pseudo, presence: true
   validates :email, presence: true
   validates :password, presence: true
+  
+  has_many :item_collections, dependent: :destroy
 end

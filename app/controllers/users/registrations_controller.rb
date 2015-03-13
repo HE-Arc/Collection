@@ -1,4 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+  
+  include ItemCollectionsHelper
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
 
@@ -13,6 +15,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     respond_to do |format|
       if @user.save
+        defaultCollection("Ma collection",@user.id,@user.created_at)
         sign_in(:user, @user)
         format.html { redirect_to root_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
