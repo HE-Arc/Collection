@@ -10,6 +10,7 @@ class TracksController < ApplicationController
   # GET /tracks/1
   # GET /tracks/1.json
   def show
+    
   end
 
   # GET /tracks/new
