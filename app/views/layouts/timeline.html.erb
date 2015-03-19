@@ -1,81 +1,86 @@
-<div class="row">
-  <div class="dropdown pull-right" id="dd-menu-sort">
-    <button class="btn btn-default dropdown-toggle" type="button" id="dd-menu-sort-btn" data-toggle="dropdown" aria-expanded="true">
-      Choisir un tri
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="dd-menu-sort-btn">
-      <li role="presentation">
-        <%= link_to 'Trier par date d\'ajout croissant', params.merge('sort' => 'nameDesc'), :role => 'menuitem' %>
-      </li>
-      <li role="presentation">
-        <%= link_to 'Trier par date d\'ajout décroissant', params.merge('sort' => 'dateDesc'), :role => 'menuitem' %>
-      </li>
+<% if @cds.nil? || @cds.size == 0 %>
+    <h4>Aucun élément présent dans cette collection</h4>
+    <%= link_to 'Ajouter un CD', new_cd_path, :class => 'btn btn-success' %>
+<% else %>
+    <div class="row">
+      <div class="dropdown pull-right" id="dd-menu-sort">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dd-menu-sort-btn" data-toggle="dropdown" aria-expanded="true">
+          Choisir un tri
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dd-menu-sort-btn">
+          <li role="presentation">
+            <%= link_to 'Trier par date d\'ajout croissant', params.merge('sort' => 'nameDesc'), :role => 'menuitem' %>
+          </li>
+          <li role="presentation">
+            <%= link_to 'Trier par date d\'ajout décroissant', params.merge('sort' => 'dateDesc'), :role => 'menuitem' %>
+          </li>
 
-      <li role="presentation">
-        <%= link_to 'Trier par nom croissant', params.merge('sort' => 'name'), :role => 'menuitem' %>
-      </li>
-      <li role="presentation">
-        <%= link_to 'Trier par nom décroissant', params.merge('sort' => 'nameDesc'), :role => 'menuitem' %>
-      </li>
-    </ul>
-  </div>
-</div>
+          <li role="presentation">
+            <%= link_to 'Trier par nom croissant', params.merge('sort' => 'name'), :role => 'menuitem' %>
+          </li>
+          <li role="presentation">
+            <%= link_to 'Trier par nom décroissant', params.merge('sort' => 'nameDesc'), :role => 'menuitem' %>
+          </li>
+        </ul>
+      </div>
+    </div>
 
-<% @badgeColors = "warning,danger,success,default".split(",") %>
-<ul class="timeline">
+    <% @badge_colors = "warning,danger,success,default".split(",") %>
+    <ul class="timeline">
 
-  <% i = 0 %>
-  <% @cds.each do |cd| %>
-      <% i+= 1 %>
-      <li <%= raw 'class="timeline-inverted"' if i%2==0 %>>
-        <div class="timeline-badge <%= @badgeColors.sample %>"><i class="glyphicon glyphicon-cd"></i></div>
-        <div class="timeline-panel">
-          <div class="timeline-heading">
-            <% cd_title = cd.name + ' par ' + cd.artist %>
-            <h4 class="timeline-title"><%= link_to(cd_title, cd_path(cd)) %></h4>
+      <% i = 0 %>
+      <% @cds.each do |cd| %>
+          <% i+= 1 %>
+          <li <%= raw 'class="timeline-inverted"' if i%2==0 %>>
+            <div class="timeline-badge <%= @badge_colors.sample %>"><i class="glyphicon glyphicon-cd"></i></div>
+            <div class="timeline-panel">
+              <div class="timeline-heading">
+                <% cd_title = cd.name + ' par ' + cd.artist %>
+                <h4 class="timeline-title"><%= link_to(cd_title, cd_path(cd)) %></h4>
 
-            <p>
-              <small class="text-muted"><i class="glyphicon glyphicon-time"></i>
-                Ajouté le <%= cd.created_at.strftime('%d/%m/%Y') %> à <%= cd.created_at.strftime('%H:%M') %></small>
-            </p>
-          </div>
-          <div class="timeline-body">
+                <p>
+                  <small class="text-muted"><i class="glyphicon glyphicon-time"></i>
+                    Ajouté le <%= cd.created_at.strftime('%d/%m/%Y') %> à <%= cd.created_at.strftime('%H:%M') %></small>
+                </p>
+              </div>
+              <div class="timeline-body">
 
-            <div class="row well well-sm">
-              <div class="album-metadata">
-                <img class="cover-image col-md-4" src="http://lorempixel.com/128/128/">
-                <ul class="album-details col-md-8">
-                  <li><span class="metadata-header">Album</span><%= cd.name %></li>
-                  <li><span class="metadata-header">Artiste</span><%= cd.artist %></li>
-                  <li><span class="metadata-header">Année</span><%= cd.year %></li>
-                  <li><span class="metadata-header">Genre</span><%= cd.gender %></li>
-                  <li><span class="metadata-header">Nombre de pistes</span><%= cd.tracks.size %></li>
-                </ul>
+                <div class="row well well-sm">
+                  <div class="album-metadata">
+                    <img class="cover-image col-md-4" src="http://lorempixel.com/128/128/">
+                    <ul class="album-details col-md-8">
+                      <li><span class="metadata-header">Album</span><%= cd.name %></li>
+                      <li><span class="metadata-header">Artiste</span><%= cd.artist %></li>
+                      <li><span class="metadata-header">Année</span><%= cd.year %></li>
+                      <li><span class="metadata-header">Genre</span><%= cd.gender %></li>
+                      <li><span class="metadata-header">Nombre de pistes</span><%= cd.tracks.size %></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis
+                  porris,
+                  paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis
+                  mé
+                  pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num
+                  significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num
+                  gostis.</p>
+                <hr>
+                <div class="row">
+                  <div class="container col-sm-12">
+                    <%= link_to cd_path(cd), :class => 'button btn btn-default' do %>
+                        Voir en détails <i class="glyphicon glyphicon-triangle-right"></i>
+                    <% end %>
+
+                    <%= link_to cd_path(cd), :class => 'button btn btn-default', :confirm => 'Are you sure?', :method => :delete do %>
+                        Supprimer <i class="glyphicon glyphicon-trash"></i>
+                    <% end %>
+                  </div>
+                </div>
               </div>
             </div>
-
-            <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis
-              porris,
-              paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis
-              mé
-              pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num
-              significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num
-              gostis.</p>
-            <hr>
-            <div class="row">
-              <div class="container col-sm-12">
-                <%= link_to cd_path(cd), :class => 'button btn btn-default' do %>
-                    Voir en détails <i class="glyphicon glyphicon-triangle-right"></i>
-                <% end %>
-
-                <%= link_to cd_path(cd), :class => 'button btn btn-default', :confirm => 'Are you sure?', :method => :delete do %>
-                    Supprimer <i class="glyphicon glyphicon-trash"></i>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
-      </li>
-  <% end %>
+          </li>
+      <% end %>
+<% end %>
 </ul>
