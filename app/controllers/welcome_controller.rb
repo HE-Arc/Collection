@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-    @user = User.new
+    @cds = Cd.all
     render 'index'
   end
 end

@@ -16,15 +16,18 @@
 <% @badgeColors = "warning,danger,success,default".split(",") %>
 <ul class="timeline">
 
-  <% (1..10).each do |i| %>
+  <% i = 0 %>
+  <% @cds.each do |cd| %>
+      <% i+= 1 %>
       <li <%= raw 'class="timeline-inverted"' if i%2==0 %>>
         <div class="timeline-badge <%= @badgeColors.sample %>"><i class="glyphicon glyphicon-cd"></i></div>
         <div class="timeline-panel">
           <div class="timeline-heading">
-            <h4 class="timeline-title">Mussum ipsum cacilds</h4>
+            <h4 class="timeline-title"><%= cd.name %> par <%= cd.artist %></h4>
 
             <p>
-              <small class="text-muted"><i class="glyphicon glyphicon-time"></i> Ajouté le dd.mm.yyyy</small>
+              <small class="text-muted"><i class="glyphicon glyphicon-time"></i> Ajouté
+                le <%= cd.created_at.strftime('%d/%m/%Y') %> à <%= cd.created_at.strftime('%H:%M') %></small>
             </p>
           </div>
           <div class="timeline-body">
@@ -33,13 +36,11 @@
               <div class="album-metadata">
                 <img class="cover-image col-md-4" src="http://lorempixel.com/128/128/">
                 <ul class="album-details col-md-8">
-                  <li><span class="metadata-header">Album</span> Greatest Hits 2002 ésakfj sdkjkjsahd jkhakj hf</li>
-                  <li><span class="metadata-header">Artiste</span> A lot of people kjshdk ajhdkjah sd ksha dkahsdk
-                    jahsda
-                  </li>
-                  <li><span class="metadata-header">Année</span> 2002</li>
-                  <li><span class="metadata-header">Genre</span> Bullshit</li>
-                  <li><span class="metadata-header">Nombre de pistes</span> 6</li>
+                  <li><span class="metadata-header">Album</span><%= cd.name %></li>
+                  <li><span class="metadata-header">Artiste</span><%= cd.artist %></li>
+                  <li><span class="metadata-header">Année</span><%= cd.year %></li>
+                  <li><span class="metadata-header">Genre</span><%= cd.gender %></li>
+                  <li><span class="metadata-header">Nombre de pistes</span>TODO...</li>
                 </ul>
               </div>
             </div>
@@ -54,13 +55,13 @@
             <hr>
             <div class="row">
               <div class="container col-sm-12">
-                <button type="button" class="btn btn-default">
-                  Voir en détails <i class="glyphicon glyphicon-triangle-right"></i>
-                </button>
+                <%= link_to cd_path(cd), :class => 'button btn btn-default' do %>
+                    Voir en détails <i class="glyphicon glyphicon-triangle-right"></i>
+                <% end %>
 
-                <button type="button" class="btn btn-default">
-                  Supprimer <i class="glyphicon glyphicon-trash"></i>
-                </button>
+                <%= link_to cd_path(cd), :class => 'button btn btn-default', :confirm => 'Are you sure?', :method => :delete do %>
+                    Supprimer <i class="glyphicon glyphicon-trash"></i>
+                <% end %>
               </div>
             </div>
           </div>

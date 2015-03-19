@@ -12,7 +12,7 @@ body {
     margin-bottom: 60px;
 }
 
-#footer {  
+#footer {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -26,11 +26,11 @@ body {
 }
 
 .cover-image {
-  padding-right: 0;
+    padding-right: 0;
 }
 
 .album-details {
-    list-style-type: none;    
+    list-style-type: none;
 }
 
 .metadata-header {
