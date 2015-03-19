@@ -54,3 +54,15 @@ a.btn-success, a.btn-primary {
 .description_header {
     font-weight: bold;
 }
+
+.add-cd-icon > .glyphicon-plus {
+    font-size: 3em;
+}
+
+.add-cd-icon:hover > .glyphicon-plus {
+    color: #000000;
+}
+
+a:hover {
+    background-color: transparent;
+}

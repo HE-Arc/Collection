@@ -81,5 +81,16 @@
             </div>
           </li>
       <% end %>
+      <li <%= raw 'class="timeline-inverted"' if i%2!=0 %>>
+        <div class="timeline-badge <%= @badge_colors.sample %>"><i class="glyphicon glyphicon-cd"></i></div>
+        <div class="timeline-panel">
+          <div class="timeline-body">
+            <%= link_to new_cd_path do %>
+                <div class="text-center add-cd-icon">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </div>
+            <% end %>
+          </div>
+        </div>
 <% end %>
 </ul>
