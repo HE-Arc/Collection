@@ -1,48 +1,53 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Artist:</strong>
-  <%= @cd.artist %>
-</p>
+<h1>Détails de l'album</h1>
 
-<p>
-  <strong>Name:</strong>
-  <%= @cd.name %>
-</p>
+<div class="contains">
+  <img class="cover-image col-md-4" src="http://lorempixel.com/128/128/">
+  <p>
+    <strong>Artist:</strong>
+    <%= @cd.artist %>
+  </p>
 
-<p>
-  <strong>Editor:</strong>
-  <%= @cd.editor %>
-</p>
+  <p>
+    <strong>Name:</strong>
+    <%= @cd.name %>
+  </p>
 
-<p>
-  <strong>Cover:</strong>
-  <%= @cd.cover %>
-</p>
+  <p>
+    <strong>Editor:</strong>
+    <%= @cd.editor %>
+  </p>
 
-<p>
-  <strong>Year:</strong>
-  <%= @cd.year %>
-</p>
+  <p>
+    <strong>Cover:</strong>
+    <%= @cd.cover %>
+  </p>
 
-<p>
-  <strong>Gender:</strong>
-  <%= @cd.gender %>
-</p>
+  <p>
+    <strong>Year:</strong>
+    <%= @cd.year %>
+  </p>
 
-<p>
-  <strong>Purchasedate:</strong>
-  <%= @cd.purchaseDate %>
-</p>
+  <p>
+    <strong>Gender:</strong>
+    <%= @cd.gender %>
+  </p>
 
-<p>
-  <strong>Item collection:</strong>
-  <%= @cd.item_collection %>
-</p>
+  <p>
+    <strong>Purchasedate:</strong>
+    <%= @cd.purchaseDate %>
+  </p>
+
+  <p>
+    <strong>Item collection:</strong>
+    <%= @cd.item_collection %>
+  </p>
+</div>
 
 
+<%= link_to 'Edit', edit_cd_path(@cd) %>
 
-<%= link_to 'Edit', edit_cd_path(@cd) %> |
-<%= link_to 'Back', cds_path %>
-
-<%= render :template => 'tracks/index' %>
+<div class="contains">
+  <%= render :template => 'tracks/index' %>
+</div>

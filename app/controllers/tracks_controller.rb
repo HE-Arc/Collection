@@ -20,6 +20,7 @@ class TracksController < ApplicationController
 
   # GET /tracks/1/edit
   def edit
+    @tracks = Track.all
   end
 
   # POST /tracks
