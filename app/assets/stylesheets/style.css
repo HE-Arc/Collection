@@ -50,3 +50,7 @@ h4 a:hover {
 a.btn-success, a.btn-primary {
     color: #ffffff;
 }
+
+.description_header {
+    font-weight: bold;
+}
