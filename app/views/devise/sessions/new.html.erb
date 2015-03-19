@@ -1,24 +1,15 @@
-<form class="navbar-form navbar-right">
-  <div class="form-group">
-    <input type="text" placeholder="Email" class="form-control">
-  </div>
-  <div class="form-group">
-    <input type="password" placeholder="Mot de passe" class="form-control">
-  </div>
-  <button type="submit" class="btn btn-success">Se connecter</button>
-</form>
-
 <h2>Log in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
+<%= form_for(:user, :url => session_path(:user)) do |f| %>
+<%= devise_error_messages! %>
+  <div class="input field form-group">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email, autofocus: true ,:class=>'form-control',:placeholder => "Email"%>
   </div>
 
-  <div class="field">
+  <div class="input field form-group">
     <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password, autocomplete: "off",:class=>'form-control',:placeholder => "mot de passe" %>
   </div>
 
   <% if devise_mapping.rememberable? -%>
@@ -29,7 +20,7 @@
   <% end -%>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+      <%= f.submit "Log in",:class=>"btn btn-default" %>
   </div>
 <% end %>
 
