@@ -5,10 +5,19 @@
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" role="menu" aria-labelledby="dd-menu-sort-btn">
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Trier par date d'ajout croissant</a></li>
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Trier par date d'ajout décroissant</a></li>
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Trier par titre croissant</a></li>
-      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Trier par titre décroissant</a></li>
+      <li role="presentation">
+        <%= link_to 'Trier par date d\'ajout croissant', params.merge('sort' => 'date'), :role => 'menuitem' %>
+      </li>
+      <li role="presentation">
+        <%= link_to 'Trier par date d\'ajout décroissant', params.merge('sort' => 'dateDesc'), :role => 'menuitem' %>
+      </li>
+
+      <li role="presentation">
+        <%= link_to 'Trier par nom croissant', params.merge('sort' => 'name'), :role => 'menuitem' %>
+      </li>
+      <li role="presentation">
+        <%= link_to 'Trier par nom décroissant', params.merge('sort' => 'nameDesc'), :role => 'menuitem' %>
+      </li>
     </ul>
   </div>
 </div>
@@ -23,11 +32,12 @@
         <div class="timeline-badge <%= @badgeColors.sample %>"><i class="glyphicon glyphicon-cd"></i></div>
         <div class="timeline-panel">
           <div class="timeline-heading">
-            <h4 class="timeline-title"><%= cd.name %> par <%= cd.artist %></h4>
+            <% cd_title = cd.name + ' par ' + cd.artist %>
+            <h4 class="timeline-title"><%= link_to(cd_title, cd_path(cd)) %></h4>
 
             <p>
-              <small class="text-muted"><i class="glyphicon glyphicon-time"></i> Ajouté
-                le <%= cd.created_at.strftime('%d/%m/%Y') %> à <%= cd.created_at.strftime('%H:%M') %></small>
+              <small class="text-muted"><i class="glyphicon glyphicon-time"></i>
+                Ajouté le <%= cd.created_at.strftime('%d/%m/%Y') %> à <%= cd.created_at.strftime('%H:%M') %></small>
             </p>
           </div>
           <div class="timeline-body">
@@ -40,7 +50,7 @@
                   <li><span class="metadata-header">Artiste</span><%= cd.artist %></li>
                   <li><span class="metadata-header">Année</span><%= cd.year %></li>
                   <li><span class="metadata-header">Genre</span><%= cd.gender %></li>
-                  <li><span class="metadata-header">Nombre de pistes</span>TODO...</li>
+                  <li><span class="metadata-header">Nombre de pistes</span><%= cd.tracks.size %></li>
                 </ul>
               </div>
             </div>

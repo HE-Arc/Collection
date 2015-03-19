@@ -38,5 +38,11 @@ body {
 }
 
 .metadata-header:after {
-    content: ":";
+    content: ": ";
+}
+
+h4 a:hover {
+    background-color: #ffffff;
+    color: #000000;
+    text-decoration: none;
 }
