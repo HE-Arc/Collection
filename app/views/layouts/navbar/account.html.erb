@@ -5,7 +5,7 @@
   <%end %>
   <span class="caret"></span></a>
   <ul class="dropdown-menu" role="menu">
-    <li><a href="#">Mon compte</a></li>
+    <li><%=link_to "mon compte", user_path(current_user)%></li>
     <li><%= link_to('se déconnecter', destroy_user_session_path, :method => :delete) %></li>
   </ul>
 </li>
