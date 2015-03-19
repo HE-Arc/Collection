@@ -25,7 +25,6 @@ class WelcomeController < ApplicationController
       end
     end
 
-    @collection_name = @cds.first.item_collection.name
     render 'index'
   end
 end
