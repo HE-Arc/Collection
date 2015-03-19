@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-    @cds =nil
+    @cds = nil
 
     sort = params[:sort]
     if sort.nil? || sort == ''
