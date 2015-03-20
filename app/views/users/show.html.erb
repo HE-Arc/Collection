@@ -1,9 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-
-<%= link_to 'retour', users_path %> |
-<%= link_to "modifier", edit_user_registration_path %>
-
 <p>
   <strong>Name:</strong>
   <%= @user.name %>
@@ -33,4 +29,6 @@
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
-<p>link to collection</p>
+  
+<%= link_to("modifier", edit_user_registration_path,:class=>"btn btn-default") %>
+<%= link_to("Collection de "+@user.pseudo, item_collection_path(@user.item_collections.first),:class=>"btn btn-default") %>
