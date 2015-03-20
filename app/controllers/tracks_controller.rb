@@ -4,13 +4,12 @@ class TracksController < ApplicationController
   # GET /tracks
   # GET /tracks.json
   def index
-    @tracks = Track.all
+    @tracks = Track.order("track_number")
   end
 
   # GET /tracks/1
   # GET /tracks/1.json
   def show
-    
   end
 
   # GET /tracks/new
@@ -20,7 +19,6 @@ class TracksController < ApplicationController
 
   # GET /tracks/1/edit
   def edit
-    @tracks = Track.all
   end
 
   # POST /tracks
@@ -71,6 +69,6 @@ class TracksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def track_params
-      params.require(:track).permit(:title, :trackNumber, :cd_id)
+      params.require(:track).permit(:title, :track_number, :cd_id)
     end
 end

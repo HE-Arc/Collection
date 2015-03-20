@@ -11,13 +11,14 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label "N°" %>
-    <%= f.number_field :track_number %>
-  </div>
+
   <div class="field">
     <%= f.label "Titre" %>
     <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label "N°" %>
+    <%= f.number_field :track_number %>
   </div>
   <div class="actions">
     <%= f.submit %>
