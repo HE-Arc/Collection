@@ -33,7 +33,7 @@
 </div>
 <div class="field">
   <%= f.label :purchaseDate %><br>
-  <%= f.date_select :purchaseDate ,:class=>'input form-control'%>
+  <%= f.date_select :purchaseDate , :start_year=>Date.today.year - 100, :end_year => Time.now.year,:class=>'input form-control'%>
 </div>
 <div class="field">
   <%= f.file_field :image%>

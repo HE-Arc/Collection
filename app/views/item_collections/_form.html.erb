@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :beginDate %><br>
-    <%= f.date_select :beginDate %>
+    <%= f.date_select :beginDate ,:start_year=>Date.today.year - 100, :end_year => Time.now.year%>
   </div>
   <div class="field">
     <%= f.label :user_id %><br>
