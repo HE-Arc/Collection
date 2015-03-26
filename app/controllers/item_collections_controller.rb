@@ -1,5 +1,14 @@
 class ItemCollectionsController < ApplicationController
   before_action :set_item_collection, only: [:show, :edit, :update, :destroy]
+  before_filter :require_permission, only: [:edit,:update,:destroy]
+
+  def require_permission
+    if current_user != ItemCollection.find(params[:id]).user_id
+      redirect_to root_path
+      #Or do something else here
+    end
+  end
+  
 
   # GET /item_collections
   # GET /item_collections.json
