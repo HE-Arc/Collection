@@ -13,13 +13,16 @@
 
 
   <div class="field">
-    <%= f.label "Titre" %>
-    <%= f.text_field :title %>
+    <%= f.label "N°" %>
+    <% if :track_number? %>
+      <%= f.number_field :track_number, :value => (Track.where(cd_id: @track.cd_id).size) %>
+    <% else %>
+      <%= f.number_field :track_number%>
+    <% end %>
   </div>
   <div class="field">
-    <%= f.label "N°" %>
-    <% %>
-    <%= f.number_field :track_number, :value => (Track.where(cd_id: @track.cd_id).size) %>
+    <%= f.label "Titre" %>
+    <%= f.text_field :title %>
   </div>
   <div class="actions">
     <%= f.submit %>
