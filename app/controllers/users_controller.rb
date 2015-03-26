@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_filter :require_permission, only: [:edit,:update,:destroy]
 
   def require_permission
-    if current_user != User.find(params[:id])
+    if current_user.id != User.find(params[:id]).id
       redirect_to root_path
       #Or do something else here
     end

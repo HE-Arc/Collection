@@ -3,9 +3,8 @@ class ItemCollectionsController < ApplicationController
   before_filter :require_permission, only: [:edit,:update,:destroy]
 
   def require_permission
-    if current_user != ItemCollection.find(params[:id]).user_id
+    if current_user.id != ItemCollection.find(params[:id]).user_id
       redirect_to root_path
-      #Or do something else here
     end
   end
   
