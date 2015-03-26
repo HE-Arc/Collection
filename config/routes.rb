@@ -1,16 +1,16 @@
 Rails.application.routes.draw do
-  devise_for :users,  controllers: {registrations: "users/registrations"}
+  devise_for :users,  controllers: {registrations: "users/registrations", sessions: "users/sessions"}
   #not sure about this
   #root to: "users#index"
-  
-  resources :users
-  
-  resources :item_collections
   
   resources :cds
 
   resources :tracks
-  
+
+  resources :item_collections
+
+  resources :users
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
