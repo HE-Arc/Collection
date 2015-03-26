@@ -37,17 +37,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   
   #config for devise
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  config.action_mailer.default_url_options = { host: 'localhost:3000' }
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => 'http://projetruby-180848.euw1.nitrousbox.com' }
 config.action_mailer.delivery_method = :smtp
-config.action_mailer.smtp_settings = {
-      address: "smtp.gmail.com",
-      port: 587,
-      authentication: "plain",
-      enable_starttls_auto: true,
-  user_name: "noreplycollectionitem@gmail.com",
-  password: "CollectionItem"
-
-  }
+config.action_mailer.smtp_settings = {:address => "smtp-relay.gmail.com", :port => "587"}
 end
