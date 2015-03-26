@@ -6,8 +6,8 @@
 <%= render 'form' %>
 
 <div class="contains">
-  <div class="col-md-4 cover-image">
-    <%= link_to image_tag(@cd.image.url(:large)), @cd.image.url, :class => 'cover-image' %>
+  <div class="col-md-4">
+    <%= image_tag(@cd.image.url(:large), :class => 'cover-image') %>
   </div>
 
   <div class="col-md-8">
@@ -50,7 +50,6 @@
       <strong>Item collection:</strong>
       <%= @cd.item_collection %>
     </p>
-    <%= link_to 'Edit', @cd %>
     <%= link_to 'Edit', edit_cd_path(@cd) %>
   </div>
 </div>
