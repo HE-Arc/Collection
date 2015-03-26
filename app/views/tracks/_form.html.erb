@@ -18,7 +18,8 @@
   </div>
   <div class="field">
     <%= f.label "N°" %>
-    <%= f.number_field :track_number %>
+    <% %>
+    <%= f.number_field :track_number, :value => (Track.where(cd_id: @track.cd_id).size) %>
   </div>
   <div class="actions">
     <%= f.submit %>

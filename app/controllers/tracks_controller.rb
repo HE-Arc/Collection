@@ -1,5 +1,6 @@
 class TracksController < ApplicationController
   before_action :set_track, only: [:show, :edit, :update, :destroy]
+  before_action :get_cd, only: [:create, :update]
 
   # GET /tracks
   # GET /tracks.json
@@ -28,7 +29,8 @@ class TracksController < ApplicationController
 
     respond_to do |format|
       if @track.save
-        format.html { redirect_to @track, notice: 'Track was successfully created.' }
+        @cd = Cd.find(@track.cd_id)
+        format.html { redirect_to @cd, notice: 'Track was successfully created.' }
         format.json { render :show, status: :created, location: @track }
       else
         format.html { render :new }
@@ -42,7 +44,8 @@ class TracksController < ApplicationController
   def update
     respond_to do |format|
       if @track.update(track_params)
-        format.html { redirect_to @track, notice: 'Track was successfully updated.' }
+        @cd = Cd.find(@track.cd_id)
+        format.html { redirect_to @cd, notice: 'Track was successfully updated.' }
         format.json { render :show, status: :ok, location: @track }
       else
         format.html { render :edit }

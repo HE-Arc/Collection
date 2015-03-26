@@ -10,7 +10,7 @@ class CdsController < ApplicationController
   # GET /cds/1
   # GET /cds/1.json
   def show
-    @tracks = Track.order("track_number")
+    @tracks = Track.order("track_number").where(cd_id: @cd)
   end
 
   # GET /cds/new

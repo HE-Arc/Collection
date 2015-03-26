@@ -2,6 +2,9 @@
 
 <h1>Détails de l'album</h1>
 
+
+<%= render 'form' %>
+
 <div class="contains">
   <img class="cover-image col-md-4" src="http://lorempixel.com/128/128/">
   <p>
@@ -46,7 +49,7 @@
 </div>
 
 
-<%= link_to 'Edit', edit_cd_path(@cd) %>
+<%= link_to 'Edit', @cd %>
 
 <div class="contains">
   <%= render :template => 'tracks/index' %>
