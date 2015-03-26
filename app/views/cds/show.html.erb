@@ -1,9 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Détails de l'album</h1>
-
-
-<%= render 'form' %>
+<h1><%= @cd.name %></h1>
 
 <div class="contains">
   <div class="col-md-4 cover-image">
@@ -12,45 +9,25 @@
 
   <div class="col-md-8">
     <p>
-      <strong>Artist:</strong>
+      <strong>Artiste:</strong>
       <%= @cd.artist %>
     </p>
-
     <p>
-      <strong>Name:</strong>
-      <%= @cd.name %>
-    </p>
-
-    <p>
-      <strong>Editor:</strong>
+      <strong>Editeur:</strong>
       <%= @cd.editor %>
     </p>
-
     <p>
-      <strong>Cover:</strong>
-      <%= @cd.cover %>
-    </p>
-
-    <p>
-      <strong>Year:</strong>
+      <strong>Année:</strong>
       <%= @cd.year %>
     </p>
-
     <p>
-      <strong>Gender:</strong>
+      <strong>Style:</strong>
       <%= @cd.gender %>
     </p>
-
     <p>
-      <strong>Purchasedate:</strong>
+      <strong>Date d'achat:</strong>
       <%= @cd.purchaseDate %>
     </p>
-
-    <p>
-      <strong>Item collection:</strong>
-      <%= @cd.item_collection %>
-    </p>
-    <%= link_to 'Edit', @cd %>
     <%= link_to 'Edit', edit_cd_path(@cd) %>
   </div>
 </div>
