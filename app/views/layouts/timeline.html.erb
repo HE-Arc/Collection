@@ -59,7 +59,9 @@
 
                 <div class="row well well-sm">
                   <div class="album-metadata">
-                    <%= link_to image_tag(cd.image.url(:med)), cd.image.url, :class => 'cover-image col-md-4' %>
+                    <div class="cover-image col-md-4">
+                      <%= image_tag(cd.image.url(:med)) %>
+                    </div>
                     <ul class="album-details col-md-8">
                       <li><span class="metadata-header">Album</span><%= cd.name %></li>
                       <li><span class="metadata-header">Artiste</span><%= cd.artist %></li>

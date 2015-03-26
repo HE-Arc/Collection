@@ -17,7 +17,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if @user.save
         defaultCollection("Ma collection",@user.id,@user.created_at)
         sign_in(:user, @user)
-        format.html { redirect_to root_path, notice: 'User was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Le compte à correctement été créé' }
         format.json { render :show, status: :created, location: @user }
         #redirect_to root_path
       else

@@ -3,8 +3,8 @@
 <h1><%= @cd.name %></h1>
 
 <div class="contains">
-  <div class="col-md-4 cover-image">
-    <%= link_to image_tag(@cd.image.url(:large)), @cd.image.url, :class => 'cover-image' %>
+  <div class="col-md-4">
+    <%= image_tag(@cd.image.url(:large), :class => 'cover-image') %>
   </div>
 
   <div class="col-md-8">
@@ -28,6 +28,14 @@
       <strong>Date d'achat:</strong>
       <%= @cd.purchaseDate %>
     </p>
+<<<<<<< HEAD
+=======
+
+    <p>
+      <strong>Item collection:</strong>
+      <%= @cd.item_collection %>
+    </p>
+>>>>>>> 6de5406e15b1f6112c356895d40d1b39a9630869
     <%= link_to 'Edit', edit_cd_path(@cd) %>
   </div>
 </div>

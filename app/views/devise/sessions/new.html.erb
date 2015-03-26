@@ -1,7 +1,11 @@
 <h2>Log in</h2>
 
 <%= form_for(:user, :url => session_path(:user)) do |f| %>
-<%= devise_error_messages! %>
+
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+<% end %>
+
   <div class="input field form-group">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true ,:class=>'form-control',:placeholder => "Email"%>
