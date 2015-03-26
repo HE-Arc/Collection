@@ -29,8 +29,8 @@ class TracksController < ApplicationController
 
     respond_to do |format|
       if @track.save
-        @cd = Cd.find(@track.cd_id)
-        format.html { redirect_to @cd, notice: 'Track was successfully created.' }
+
+        format.html { redirect_to @track, notice: 'Track was successfully created.' }
         format.json { render :show, status: :created, location: @track }
       else
         format.html { render :new }
@@ -44,7 +44,6 @@ class TracksController < ApplicationController
   def update
     respond_to do |format|
       if @track.update(track_params)
-        @cd = Cd.find(@track.cd_id)
         format.html { redirect_to @cd, notice: 'Track was successfully updated.' }
         format.json { render :show, status: :ok, location: @track }
       else
@@ -73,5 +72,9 @@ class TracksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def track_params
       params.require(:track).permit(:title, :track_number, :cd_id)
+    end
+  
+    def get_cd
+      @cd = Cd.find(@track.cd_id)
     end
 end
