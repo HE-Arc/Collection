@@ -21,7 +21,7 @@ class WelcomeController < ApplicationController
         when 'purchaseDateDesc'
           @cds = Cd.all.order('purchaseDate DESC')
         else
-          @cds = Cd.all
+          @cds = Cd.all.order('created_at DESC')
       end
     end
 

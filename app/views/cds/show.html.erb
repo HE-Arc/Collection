@@ -6,51 +6,55 @@
 <%= render 'form' %>
 
 <div class="contains">
-  <img class="cover-image col-md-4" src="http://lorempixel.com/128/128/">
-  <p>
-    <strong>Artist:</strong>
-    <%= @cd.artist %>
-  </p>
+  <div class="col-md-4 cover-image">
+    <%= link_to image_tag(@cd.image.url(:large)), @cd.image.url, :class => 'cover-image' %>
+  </div>
 
-  <p>
-    <strong>Name:</strong>
-    <%= @cd.name %>
-  </p>
+  <div class="col-md-8">
+    <p>
+      <strong>Artist:</strong>
+      <%= @cd.artist %>
+    </p>
 
-  <p>
-    <strong>Editor:</strong>
-    <%= @cd.editor %>
-  </p>
+    <p>
+      <strong>Name:</strong>
+      <%= @cd.name %>
+    </p>
 
-  <p>
-    <strong>Cover:</strong>
-    <%= @cd.cover %>
-  </p>
+    <p>
+      <strong>Editor:</strong>
+      <%= @cd.editor %>
+    </p>
 
-  <p>
-    <strong>Year:</strong>
-    <%= @cd.year %>
-  </p>
+    <p>
+      <strong>Cover:</strong>
+      <%= @cd.cover %>
+    </p>
 
-  <p>
-    <strong>Gender:</strong>
-    <%= @cd.gender %>
-  </p>
+    <p>
+      <strong>Year:</strong>
+      <%= @cd.year %>
+    </p>
 
-  <p>
-    <strong>Purchasedate:</strong>
-    <%= @cd.purchaseDate %>
-  </p>
+    <p>
+      <strong>Gender:</strong>
+      <%= @cd.gender %>
+    </p>
 
-  <p>
-    <strong>Item collection:</strong>
-    <%= @cd.item_collection %>
-  </p>
+    <p>
+      <strong>Purchasedate:</strong>
+      <%= @cd.purchaseDate %>
+    </p>
+
+    <p>
+      <strong>Item collection:</strong>
+      <%= @cd.item_collection %>
+    </p>
+    <%= link_to 'Edit', @cd %>
+    <%= link_to 'Edit', edit_cd_path(@cd) %>
+  </div>
 </div>
 
-
-<%= link_to 'Edit', @cd %>
-
-<div class="contains">
+<div class="col-md-12">
   <%= render :template => 'tracks/index' %>
 </div>
