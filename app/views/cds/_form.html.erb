@@ -1,4 +1,4 @@
-<%= form_for(@cd) do |f| %>
+<%= form_for(@cd, html:{multipart: true}) do |f| %>
   <% if @cd.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@cd.errors.count, "error") %> prohibited this cd from being saved:</h2>
@@ -39,6 +39,10 @@
     <%= f.label :purchaseDate %>
     <%= f.date_select :purchaseDate %>
   </div>
+
+<div class="field">
+  <%= f.file_field :image %>
+</div>
   <div class="actions">
     <%= f.submit %>
   </div>

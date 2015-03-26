@@ -70,6 +70,6 @@ class CdsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cd_params
-      params.require(:cd).permit(:artist, :name, :editor, :cover, :year, :gender, :purchaseDate, :item_collection_id)
+      params.require(:cd).permit(:artist, :name, :editor, :cover, :year, :gender, :purchaseDate, :item_collection_id, :image)
     end
 end
