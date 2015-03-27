@@ -1,27 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @item_collection.name %>
-</p>
-
-<p>
-  <strong>Begindate:</strong>
-  <%= @item_collection.beginDate %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @item_collection.user %>
-</p>
-
-<p>
-  cds : 
-  <% @cds.each do |cd| %>
-    <p> <%= cd.name %> </p>
-<% end %>
-
-</p>
+<%= render :template => "layouts/timeline" %>
 
 <%= link_to 'Edit', edit_item_collection_path(@item_collection) %> |
 <%= link_to 'Back', item_collections_path %>

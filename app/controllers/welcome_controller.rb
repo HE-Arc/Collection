@@ -1,10 +1,12 @@
 class WelcomeController < ApplicationController
   def index
+    #TODO: get random public not nil Collection
     @cds = nil
+    @collection_name = "Une superbe collection !"
 
     sort = params[:sort]
     if sort.nil? || sort == ''
-      @cds = Cd.all
+      @cds = Cd.all.order('created_at DESC')
     else
       case sort
         when 'date'

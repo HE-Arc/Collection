@@ -1,3 +1,5 @@
+<h1 class="text-center"><%= @collection_name %></h1>
+
 <% if @cds.nil? || @cds.size == 0 %>
     <h4>Aucun élément présent dans cette collection</h4>
     <%= link_to 'Ajouter un CD', new_cd_path, :class => 'btn btn-success' %>
