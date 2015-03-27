@@ -1,13 +1,22 @@
 class ItemCollectionsController < ApplicationController
   before_action :set_item_collection, only: [:show, :edit, :update, :destroy]
-  before_filter :require_permission, only: [:edit, :update, :destroy]
+  before_filter :require_permission, only: [:edit,:update,:destroy]
+  before_filter :checkPrivacy, only: [:show]
 
   def require_permission
     if current_user.id != ItemCollection.find(params[:id]).user_id
       redirect_to root_path
     end
   end
-
+  
+  def checkPrivacy
+    if ItemCollection.find(params[:id]).isPrivate
+       if current_user.id != ItemCollection.find(params[:id]).user_id
+          redirect_to root_path
+       end
+    end
+  end
+  
 
   # GET /item_collections
   # GET /item_collections.json
@@ -19,31 +28,7 @@ class ItemCollectionsController < ApplicationController
   # GET /item_collections/1.json
   def show
     @item_collection = ItemCollection.find(params[:id])
-    @collection_name = @item_collection.name
-
-    @cds = nil
-    sort = params[:sort]
-    if sort.nil? || sort == ''
-      @cds = @cds = @item_collection.cds.order('created_at DESC')
-    else
-      case sort
-        when 'date'
-          @cds = @item_collection.cds.order('created_at')
-        when 'dateDesc'
-          @cds = @item_collection.cds.order('created_at DESC')
-        when 'name'
-          @cds = @item_collection.cds.order('name')
-        when 'nameDesc'
-          @cds = @item_collection.cds.order('name DESC')
-
-        when 'purchaseDate'
-          @cds = @item_collection.cds.order('purchaseDate')
-        when 'purchaseDateDesc'
-          @cds = @item_collection.cds.order('purchaseDate DESC')
-        else
-          @cds = @item_collection.cds.order('created_at DESC')
-      end
-    end
+    @cds = @item_collection.cds
   end
 
   # GET /item_collections/new
@@ -53,6 +38,7 @@ class ItemCollectionsController < ApplicationController
 
   # GET /item_collections/1/edit
   def edit
+    @item_collection = ItemCollection.find(params[:id])
   end
 
   # POST /item_collections
@@ -74,6 +60,8 @@ class ItemCollectionsController < ApplicationController
   # PATCH/PUT /item_collections/1
   # PATCH/PUT /item_collections/1.json
   def update
+    @item_collection = ItemCollection.find(params[:id])
+    
     respond_to do |format|
       if @item_collection.update(item_collection_params)
         format.html { redirect_to @item_collection, notice: 'Item collection was successfully updated.' }
@@ -96,13 +84,13 @@ class ItemCollectionsController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_item_collection
-    @item_collection = ItemCollection.find(params[:id])
-  end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_item_collection
+      @item_collection = ItemCollection.find(params[:id])
+    end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def item_collection_params
-    params.require(:item_collection).permit(:name, :beginDate, :user_id)
-  end
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def item_collection_params
+      params.require(:item_collection).permit(:name, :beginDate, :user_id,:isPrivate)
+    end
 end
