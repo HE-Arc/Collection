@@ -13,11 +13,11 @@
 
   <div class="field">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name ,:class=>'input form-control'%>
   </div>
   <div class="field">
     <%= f.label :beginDate %><br>
-    <%= f.date_select :beginDate ,:start_year=>Date.today.year - 100, :end_year => Time.now.year%>
+    <%= f.date_select :beginDate ,:start_year=>Date.today.year - 100, :end_year => Time.now.year,:class=>'input form-control'%>
   </div>
 
   <div class="field">
