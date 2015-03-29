@@ -14,6 +14,9 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
+    if !params[:search].nil? || params[:search] == ''
+      @users = User.where('pseudo LIKE ?', "%#{params[:search]}%").all
+    end
   end
 
   # GET /users/1

@@ -1,19 +1,23 @@
-<h1>Listing users</h1>
-<% if user_signed_in? %>
-  <div>Signed in as... <%= current_user.email %></div>
-  
-<% else%>
-<div> not signed in</div>
-  <%end %>
+<h1>List des utilisateurs</h1>
+<div class="pull-right">
+  <%= form_tag users_path, :method => 'get',:class=>"form-inline" do %>
+  <div class="form-group">
+    <%= text_field_tag :search, params[:search],:class=>"form-control",:placeholder=>"pseudo de l'utilisateur" %>
+    <%= submit_tag "Search", :name => nil, :class=>"btn btn-default"%>
+  </div>
+  <%end%>
+</div>
+
+
+
 <table>
   <thead>
     <tr>
       <th>Name</th>
       <th>Firstname</th>
       <th>Pseudo</th>
-      <th>Birthdate</th>
       <th>Email</th>
-      <th colspan="3"></th>
+      <th>Action</th>
     </tr>
   </thead>
 
@@ -23,16 +27,11 @@
         <td><%= user.name %></td>
         <td><%= user.firstname %></td>
         <td><%= user.pseudo %></td>
-        <td><%= user.birthdate %></td>
         <td><%= user.email %></td>
         <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New User', new_user_path %>
