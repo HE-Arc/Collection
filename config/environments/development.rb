@@ -10,7 +10,7 @@ Rails.application.configure do
   config.eager_load = false
 
   # Show full error reports and disable caching.
-  config.consider_all_requests_local = true
+  config.consider_all_requests_local = false
   config.action_controller.perform_caching = false
 
 
@@ -37,7 +37,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   #config for devise
-  config.action_mailer.default_url_options = {:host => 'http://projetruby-180848.euw1.nitrousbox.com'}
+  config.action_mailer.default_url_options = {:host => 'http://srvz-isic04.he-arc.ch/collection/'}
   ActionMailer::Base.smtp_settings = {
       :address => "smtp.gmail.com",
       :port => 587,
