@@ -1,12 +1,6 @@
 .input{
   width: 20em;
 }
-{
-    background-color: #f2dede;
-    border-color: #eed3d7;
-    color: #b94a48;
-    text-align: center; }
-
 
 /*flash*/
 .alert-error, #flash_alert{
