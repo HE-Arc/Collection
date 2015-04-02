@@ -1,7 +1,7 @@
 class TracksController < ApplicationController
   before_action :set_track, only: [:show, :edit, :update, :destroy]
   before_action :set_cd, only: [:create, :update]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index,:show]
   before_filter :require_permission, only: [:edit,:update,:destroy]
 
   def require_permission

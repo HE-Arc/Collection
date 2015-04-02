@@ -1,7 +1,15 @@
 .input{
   width: 20em;
 }
-
+.blue{
+  color: #424AB8;
+}
+.bg-blue{
+  background-color: #424AB8;
+}
+.white{
+  color: white;
+}
 /*flash*/
 .alert-error, #flash_alert{
     background-color: #f2dede;

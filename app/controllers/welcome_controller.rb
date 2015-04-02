@@ -1,29 +1,31 @@
 class WelcomeController < ApplicationController
   def index
     #TODO: get random public not nil Collection
-    @cds = nil
-    @collection_name = "Une superbe collection !"
-
+    @collection_item = ItemCollection.getPublicRandomCollection
+    if @collection_item !=nil
+      @cds=Cd.where("item_collection_id = ?",@collection_item.id)
+      @collection_name=@collection_item.name
     sort = params[:sort]
     if sort.nil? || sort == ''
-      @cds = Cd.all.order('created_at DESC')
+      @cds = @cds.order('created_at DESC')
     else
       case sort
         when 'date'
-          @cds = Cd.all.order('created_at')
+          @cds = @cds.order('created_at')
         when 'dateDesc'
-          @cds = Cd.all.order('created_at DESC')
+          @cds = @cds.order('created_at DESC')
         when 'name'
-          @cds = Cd.all.order('name')
+          @cds = @cds.order('name')
         when 'nameDesc'
-          @cds = Cd.all.order('name DESC')
+          @cds = @cds.order('name DESC')
 
         when 'purchaseDate'
-          @cds = Cd.all.order('purchaseDate')
+          @cds = @cds.order('purchaseDate')
         when 'purchaseDateDesc'
-          @cds = Cd.all.order('purchaseDate DESC')
+          @cds = @cds.order('purchaseDate DESC')
         else
-          @cds = Cd.all.order('created_at DESC')
+          @cds = @cds.order('created_at DESC')
+      end
       end
     end
 

@@ -1,16 +1,18 @@
-<h1>List des utilisateurs</h1>
-<div class="pull-right">
+<h1>Liste des utilisateurs</h1>
+<div class="pull-right input-group add-on">
   <%= form_tag users_path, :method => 'get',:class=>"form-inline" do %>
-  <div class="form-group">
+  <div class="form-group input-group add-on">
     <%= text_field_tag :search, params[:search],:class=>"form-control",:placeholder=>"pseudo de l'utilisateur" %>
-    <%= submit_tag "Search", :name => nil, :class=>"btn btn-default"%>
+    <div class="input-group-btn">
+    <button class="btn btn-default bg-blue" type="submit"><i class="glyphicon glyphicon-search white"></i></button>
+    </div>
   </div>
   <%end%>
 </div>
 
 
 
-<table>
+<table class="table table-condensed">
   <thead>
     <tr>
       <th>Name</th>
@@ -28,7 +30,10 @@
         <td><%= user.firstname %></td>
         <td><%= user.pseudo %></td>
         <td><%= user.email %></td>
-        <td><%= link_to 'Show', user %></td>
+        <td class>
+          <%= link_to user do %>
+          <i class="glyphicon glyphicon-eye-open blue"></i>
+<% end %></td>
       </tr>
     <% end %>
   </tbody>

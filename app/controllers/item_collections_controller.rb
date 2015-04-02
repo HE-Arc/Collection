@@ -1,6 +1,6 @@
 class ItemCollectionsController < ApplicationController
   before_action :set_item_collection, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index,:show]
   before_filter :require_permission, only: [:edit,:update,:destroy]
   before_filter :checkPrivacy, only: [:show]
 
@@ -11,7 +11,7 @@ class ItemCollectionsController < ApplicationController
   end
   
   def checkPrivacy
-    if ItemCollection.find(params[:id]).isPrivate
+    if ItemCollection.find(params[:id]).is_private
        if current_user.id != ItemCollection.find(params[:id]).user_id
           redirect_to root_path
        end
@@ -22,13 +22,17 @@ class ItemCollectionsController < ApplicationController
   # GET /item_collections
   # GET /item_collections.json
   def index
-    @item_collections = ItemCollection.all
+    @item_collections = ItemCollection.where('is_private=false')
+   if !params[:search].nil? || params[:search] == ''
+     @item_collections = ItemCollection.where('name LIKE ? AND is_private=false', "%#{params[:search]}%")
+   end
   end
 
   # GET /item_collections/1
   # GET /item_collections/1.json
   def show
     @item_collection = ItemCollection.find(params[:id])
+    @collection_name=@item_collection.name
     @cds = @item_collection.cds
   end
 
@@ -92,6 +96,6 @@ class ItemCollectionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_collection_params
-      params.require(:item_collection).permit(:name, :beginDate, :user_id,:isPrivate)
+      params.require(:item_collection).permit(:name, :beginDate, :user_id,:is_private)
     end
 end
