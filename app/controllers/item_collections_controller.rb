@@ -32,7 +32,11 @@ class ItemCollectionsController < ApplicationController
   # GET /item_collections/1.json
   def show
     @item_collection = ItemCollection.find(params[:id])
+    if @item_collection.nil?
+      redirect_to root_path
+    end
     @collection_name=@item_collection.name
+    @item_collection_id = @item_collection.id
     @cds = @item_collection.cds
   end
 

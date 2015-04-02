@@ -2,7 +2,7 @@
 
 <% if @cds.nil? || @cds.size == 0 %>
     <h4>Aucun élément présent dans cette collection</h4>
-    <%= link_to 'Ajouter un CD', new_cd_path, :class => 'btn btn-success' %>
+    <%= link_to 'Ajouter un CD', new_cd_path(:item_collection => @item_collection), :class => 'btn btn-success' %>
 <% else %>
     <div class="row">
       <div class="dropdown" id="dd-menu-sort">
@@ -45,7 +45,7 @@
         <div class="timeline-badge <%= @badge_colors.sample %>"><i class="glyphicon glyphicon-cd"></i></div>
         <div class="timeline-panel">
           <div class="timeline-body">
-            <%= link_to new_cd_path do %>
+            <%= link_to new_cd_path(:item_collection => @item_collection) do %>
                 <div class="text-center add-cd-icon">
                   <span class="glyphicon glyphicon-plus"></span>
                 </div>

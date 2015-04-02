@@ -1,13 +1,13 @@
 class CdsController < ApplicationController
   before_action :set_cd, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index,:show]
-  before_filter :require_permission, only: [:edit,:update,:destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_filter :require_permission, only: [:edit, :update, :destroy]
 
-   def require_permission
-     if current_user.id != ItemCollection.find(Cd.find(params[:id]).item_collection_id).user_id
-       redirect_to root_path
-     end
-   end
+  def require_permission
+    if current_user.id != ItemCollection.find(Cd.find(params[:id]).item_collection_id).user_id
+      redirect_to root_path
+    end
+  end
 
   # GET /cds
   # GET /cds.json
@@ -23,6 +23,13 @@ class CdsController < ApplicationController
 
   # GET /cds/new
   def new
+    @item_collection_id = params[:item_collection]
+    item_collection_param = ItemCollection.find_by_id(@item_collection_id)
+
+    if item_collection_param.nil? || (item_collection_param.id != current_user.id)
+      flash[:error] = "Vous n'avez pas la permission d'ajouter de CD sur cette collection"
+      redirect_to root_path
+    end
     @cd = Cd.new
   end
 
@@ -72,13 +79,13 @@ class CdsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_cd
-      @cd = Cd.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_cd
+    @cd = Cd.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def cd_params
-      params.require(:cd).permit(:artist, :name, :editor, :cover, :year, :gender, :purchaseDate, :item_collection_id, :image)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def cd_params
+    params.require(:cd).permit(:artist, :name, :editor, :cover, :year, :gender, :purchaseDate, :item_collection_id, :image)
+  end
 end
