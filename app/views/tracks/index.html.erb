@@ -16,12 +16,12 @@
         <td><%= track.track_number %></td>
         <td><%= track.title %></td>
         <td><%= link_to 'Edit', edit_cd_track_path(track.cd_id, track) %></td>
-        <td><%= link_to 'Destroy', tracks_path(track.cd_id, track), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', cd_tracks_path(track.cd_id, track), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to 'Ajouter une piste', new_track_path() %>
+<%= link_to 'Ajouter une piste', new_cd_track_path(@cd) %>
 
 

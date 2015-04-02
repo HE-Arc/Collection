@@ -3,12 +3,11 @@ class CdsController < ApplicationController
   before_action :authenticate_user!, except: [:index,:show]
   before_filter :require_permission, only: [:edit,:update,:destroy]
 
-  def require_permission
-    if current_user.id != ItemCollection.find(Cd.find(params[:id]).item_collection_id).user_id
-      redirect_to root_path
-      #Or do something else here
-    end
-  end
+   def require_permission
+     if current_user.id != ItemCollection.find(Cd.find(params[:id]).item_collection_id).user_id
+       redirect_to root_path
+     end
+   end
 
   # GET /cds
   # GET /cds.json
@@ -29,6 +28,7 @@ class CdsController < ApplicationController
 
   # GET /cds/1/edit
   def edit
+    @cds = Cd.all
   end
 
   # POST /cds

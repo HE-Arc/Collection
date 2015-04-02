@@ -22,24 +22,27 @@ class TracksController < ApplicationController
   def show
   end
 
-  # GET /tracks/new
+  # GET /cds/1/tracks/new
   def new
-    @track = Track.new
+    cd = Cd.find(params[:cd_id])
+    @track = cd.tracks.build
   end
 
   # GET /tracks/1/edit
   def edit
+    cd = Cd.find(params[:cd_id])
+    @track = cd.tracks.find(params[:id])
   end
 
   # POST /tracks
   # POST /tracks.json
   def create
-    @track = Track.new(track_params)
+    cd = Cd.find(params[:cd_id])
+    @track = cd.tracks.create(params[:track].permit(:title, :track_number, :cd_id))
 
     respond_to do |format|
       if @track.save
-
-        format.html { redirect_to @track, notice: 'Track was successfully created.' }
+        format.html { redirect_to(@track.cd, notice: 'Track was successfully created.') }
         format.json { render :show, status: :created, location: @track }
       else
         format.html { render :new }
@@ -53,7 +56,7 @@ class TracksController < ApplicationController
   def update
     respond_to do |format|
       if @track.update(track_params)
-        format.html { redirect_to @cd, notice: 'Track was successfully updated.' }
+        format.html { redirect_to(@track.cd, notice: 'Track was successfully update.')}
         format.json { render :show, status: :ok, location: @track }
       else
         format.html { render :edit }
