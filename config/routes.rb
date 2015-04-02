@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   #root to: "users#index"
   
   resources :cds do
-    resources :tracks, only: [:edit, :new, :index]#, :index]
+    resources :tracks#, only: [:edit, :new, :index, :new]#, :index]
   end
   
-  resources :tracks, only: [:index, :show, :new, :update, :create]
+  #resources :tracks, only: [:index, :show, :new, :update, :create]
   
   resources :item_collections
   
