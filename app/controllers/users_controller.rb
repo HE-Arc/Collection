@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   before_filter :require_permission, only: [:edit,:update,:destroy]
+  require 'htmlentities'
 
   def require_permission
     if current_user.id != User.find(params[:id]).id
@@ -15,7 +16,8 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     if !params[:search].nil? || params[:search] == ''
-      @users = User.where('pseudo LIKE ?', "%#{params[:search]}%").all
+      coder = HTMLEntities.new
+      @users = User.where('pseudo LIKE ?', "%#{coder.encode(params[:search])}%").all
     end
   end
 

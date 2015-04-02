@@ -1,5 +1,6 @@
 class CdsController < ApplicationController
   before_action :set_cd, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
   before_filter :require_permission, only: [:edit,:update,:destroy]
 
   def require_permission

@@ -1,5 +1,6 @@
 class ItemCollectionsController < ApplicationController
   before_action :set_item_collection, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
   before_filter :require_permission, only: [:edit,:update,:destroy]
   before_filter :checkPrivacy, only: [:show]
 
