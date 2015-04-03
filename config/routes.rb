@@ -3,15 +3,14 @@ Rails.application.routes.draw do
   #not sure about this
   #root to: "users#index"
   
-  resources :cds do
-    resources :tracks#, only: [:edit, :new, :index, :new]#, :index]
+  #[:index, :new, :create, :show, :edit, :update, :destroy]
+  resources :cds, except: [:index] do
+    resources :tracks, except: [:show, :index]
   end
-  
-  #resources :tracks, only: [:index, :show, :new, :update, :create]
   
   resources :item_collections
   
-  resources :users
+  resources :users, except: [:new, :edit, :new]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
