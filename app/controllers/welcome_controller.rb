@@ -3,7 +3,12 @@ class WelcomeController < ApplicationController
     #TODO: get random public not nil Collection
     @collection_item = ItemCollection.getPublicRandomCollection
     if @collection_item !=nil
-      @cds=Cd.where("item_collection_id = ?",@collection_item.id)
+      loop do 
+          @collection_item = ItemCollection.getPublicRandomCollection
+          @cds=Cd.where("item_collection_id = ?",@collection_item.id)
+        break if @cds.size!=0
+end 
+      
       @collection_name=@collection_item.name
     sort = params[:sort]
     if sort.nil? || sort == ''

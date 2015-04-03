@@ -26,7 +26,7 @@ class CdsController < ApplicationController
     @item_collection_id = params[:item_collection]
     item_collection_param = ItemCollection.find_by_id(@item_collection_id)
 
-    if item_collection_param.nil? || (item_collection_param.id != current_user.id)
+    if item_collection_param.nil? || (item_collection_param.user_id != current_user.id)
       flash[:error] = "Vous n'avez pas la permission d'ajouter de CD sur cette collection"
       redirect_to root_path
     end
