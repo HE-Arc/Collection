@@ -32,6 +32,13 @@
       <strong>Date d'achat:</strong>
       <%= @cd.purchaseDate %>
     </p>
+    
+    <% unless @cd.description.blank? %>
+      <p>
+        <strong>Description:</strong>
+        <%= @cd.description %>
+      </p>
+    <% end %>
 
     <%= link_to 'Edit', edit_cd_path(@cd) %>
   </div>

@@ -3,7 +3,10 @@ class WelcomeController < ApplicationController
     #TODO: get random public not nil Collection
     @collection_item = ItemCollection.get_last_public_collection
 
-    unless @collection_item.nil?
+    if @collection_item.nil?
+      render 'no_collection_index'
+      return
+    else
       @collection_owner_pseudo=User.find(@collection_item.user_id).pseudo
       @collection_name=@collection_item.name
       @cds=Cd.where("item_collection_id = ?", @collection_item.id)
@@ -30,7 +33,6 @@ class WelcomeController < ApplicationController
         end
       end
     end
-
     render 'index'
   end
 end
