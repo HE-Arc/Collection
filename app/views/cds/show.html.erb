@@ -1,6 +1,8 @@
 <h1><%= @cd.name %>
-  <%= link_to edit_cd_path(@cd), :class=>"btn btn-default" do%>
-    <i class="glyphicon glyphicon-edit black"></i>
+  <% if is_cd_owner(@cd) %>
+      <%= link_to edit_cd_path(@cd), :class => "btn btn-default" do %>
+          <i class="glyphicon glyphicon-edit black"></i>
+      <% end %>
   <% end %>
 </h1>
 
@@ -34,17 +36,17 @@
       <strong>Date d'achat:</strong>
       <%= @cd.purchaseDate %>
     </p>
-    
+
     <% unless @cd.description.blank? %>
-      <p>
-        <strong>Description:</strong>
-        <%= @cd.description %>
-      </p>
+        <p>
+          <strong>Description:</strong>
+          <%= @cd.description %>
+        </p>
     <% end %>
 
   </div>
 </div>
 
 <div class="col-md-6">
-  <%= render :template => 'tracks/index'%>
+  <%= render :template => 'tracks/index' %>
 </div>
