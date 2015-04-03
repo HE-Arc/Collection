@@ -82,7 +82,7 @@ class ItemCollectionsController < ApplicationController
 
     respond_to do |format|
       if @item_collection.save
-        format.html { redirect_to @item_collection, notice: 'Item collection was successfully created.' }
+        format.html { redirect_to @item_collection, notice: "La collection a été correctement créée" }
         format.json { render :show, status: :created, location: @item_collection }
       else
         format.html { render :new }

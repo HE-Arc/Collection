@@ -4,7 +4,6 @@
   <% else %>
       <%= pluralize(@cd.tracks.size, "Piste") %>
   <% end %>
-
   <% if is_cd_owner(@cd) %>
       <%= link_to new_cd_track_path(@cd), :class => "btn btn-default" do %>
           <i class="glyphicon glyphicon-plus black"></i>
