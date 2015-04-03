@@ -7,10 +7,18 @@ class Cd < ActiveRecord::Base
   validates :year, :inclusion => 1900..Date.today.year
 
   validate :max_purchaseDate
+  
+  validate :bugDate
 
   def max_purchaseDate
     if purchaseDate
       errors.add(:purchaseDate, "La date est dépassé.") if purchaseDate > Date.today
+    end
+  end
+  
+  def bugDate
+    if purchaseDate && year
+      errors.add(:purchaseDate, "La date d'achat est inférieur à l'année de parution") if purchaseDate.year < year
     end
   end
   
