@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Nom:</strong>
   <%= @user.name %>
 </p>
 
 <p>
-  <strong>Firstname:</strong>
+  <strong>Prenom:</strong>
   <%= @user.firstname %>
 </p>
 
@@ -16,7 +16,7 @@
 </p>
 
 <p>
-  <strong>Birthdate:</strong>
+  <strong>Date de naissance:</strong>
   <%= @user.birthdate %>
 </p>
 
@@ -24,6 +24,13 @@
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
-  
-<%= link_to("modifier", edit_user_registration_path,:class=>"btn btn-default") %>
-<%= link_to("Collection de "+@user.pseudo, item_collection_path(@user.item_collections.first),:class=>"btn btn-default") %>
+<%if @item_collection.is_private%>
+  <% if @item_collection.user_id == current_user.id%>
+  <%= link_to("Collection de "+@user.pseudo, item_collection_path(@user.item_collections.first),:class=>"btn btn-default") %>
+  <%end%>
+<%else%>
+  <%= link_to("Collection de "+@user.pseudo, item_collection_path(@user.item_collections.first),:class=>"btn btn-default") %>
+<%end%>
+<%if current_user.id == @user.id%>
+  <%= link_to("Modifier", edit_user_registration_path,:class=>"btn btn-default") %>
+<%end%>

@@ -2,7 +2,9 @@
 
 <% if @cds.nil? || @cds.size == 0 %>
     <h4>Aucun élément présent dans cette collection</h4>
+<%if current_user.id == @item_collection.user_id%>
     <%= link_to 'Ajouter un CD', new_cd_path(:item_collection => @item_collection), :class => 'btn btn-success' %>
+<%end%>
 <% else %>
     <div class="row">
       <div class="pull-right">
