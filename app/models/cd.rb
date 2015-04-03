@@ -6,6 +6,7 @@ class Cd < ActiveRecord::Base
   
   validates :year, :inclusion => 1900..Date.today.year
 
+  validates :item_collection_id , presence: true
   validate :max_purchaseDate
   
   validate :bugDate

@@ -15,7 +15,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     respond_to do |format|
       if @user.save
-        defaultCollection("Collection de #{@user.name}",@user.id,@user.created_at)
+        defaultCollection("Collection de #{@user.pseudo}",@user.id,@user.created_at)
         sign_in(:user, @user)
         format.html { redirect_to root_path, notice: 'Le compte à correctement été créé' }
         format.json { render :show, status: :created, location: @user }

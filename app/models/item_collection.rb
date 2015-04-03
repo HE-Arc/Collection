@@ -1,6 +1,7 @@
 class ItemCollection < ActiveRecord::Base
   belongs_to :user
   has_many :cds, dependent: :destroy
+  validates :name, presence: true
 
   def self.get_last_public_collection
     itemCollections = ItemCollection.where("is_private=false").order("RANDOM()")
