@@ -1,44 +1,44 @@
 <h1>Liste des utilisateurs</h1>
 <div class="pull-right input-group add-on">
-  <%= form_tag users_path, :method => 'get',:class=>"form-inline" do %>
-  <div class="form-group input-group add-on">
-    <%= text_field_tag :search, params[:search],:class=>"form-control",:placeholder=>"pseudo de l'utilisateur" %>
-    <div class="input-group-btn">
-    <button class="btn btn-default bg-blue" type="submit"><i class="glyphicon glyphicon-search white"></i></button>
-    </div>
-  </div>
-  <%end%>
+  <%= form_tag users_path, :method => 'get', :class => "form-inline" do %>
+      <div class="form-group input-group add-on">
+        <%= text_field_tag :search, params[:search], :class => "form-control", :placeholder => "pseudo de l'utilisateur" %>
+        <div class="input-group-btn">
+          <button class="btn btn-default bg-blue" type="submit"><i class="glyphicon glyphicon-search white"></i>
+          </button>
+        </div>
+      </div>
+  <% end %>
 </div>
 
 
-
-<table class="table table-condensed">
-  <thead>
+<div class="container">
+  <table class="table table-condensed">
+    <thead>
     <tr>
       <th>Nom</th>
       <th>Prenom</th>
       <th>Pseudo</th>
-      <th>Email</th>
       <th>Action</th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
+    <tbody>
     <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.firstname %></td>
-        <td><%= user.pseudo %></td>
-        <td><%= user.email %></td>
-        <td class>
-          <%= link_to user do %>
-          <i class="glyphicon glyphicon-eye-open blue"></i>
-<% end %></td>
-      </tr>
+        <tr>
+          <td><%= user.name.blank? ? "-" : user.name %> </td>
+          <td><%= user.firstname.blank? ? "-" : user.firstname %></td>
+          <td><%= user.pseudo %></td>
+          <td class>
+            <%= link_to user do %>
+                <i class="glyphicon glyphicon-eye-open blue"></i>
+            <% end %></td>
+        </tr>
     <% end %>
-  </tbody>
-</table>
-<%if @users.size==0 %>
-<p class="text-center">Aucun utilisateur ne correspond à votre recherche</p>
+    </tbody>
+  </table>
+</div>
+<% if @users.size==0 %>
+    <p class="text-center">Aucun utilisateur ne correspond à votre recherche</p>
 <% end %>
 <br>

@@ -25,7 +25,11 @@
     </div>
     <div class="field">
       <%= f.label "Année: " %><br>
-      <%= f.number_field :year, :class => 'input form-control', :value => Date.today.year %>
+      <% if @cd.year.nil? %>
+          <%= f.number_field :year, :class => 'input form-control', :value => Date.today.year %>
+      <% else %>
+          <%= f.number_field :year, :class => 'input form-control' %>
+      <% end %>
     </div>
     <div class="field">
       <%= f.label "Genre: " %><br>

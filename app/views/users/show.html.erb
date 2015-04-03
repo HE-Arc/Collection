@@ -18,19 +18,18 @@
   <%= @user.birthdate %>
 </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-<%if @item_collection.is_private%>
-  <% if @item_collection.user_id == current_user.id%>
-  <%= link_to("Collection de "+@user.pseudo, item_collection_path(@user.item_collections.first),:class=>"btn btn-default") %>
-  <%end%>
-<%else%>
-  <%= link_to("Collection de "+@user.pseudo, item_collection_path(@user.item_collections.first),:class=>"btn btn-default") %>
-<%end%>
-<% unless current_user==nil%>
-    <%if current_user.id == @user.id%>
-      <%= link_to("Modifier", edit_user_registration_path,:class=>"btn btn-default") %>
-    <%end%>
-<%end%>
+<% if @item_collection.is_private %>
+
+    <% unless current_user.nil? %>
+        <% if @item_collection.user_id == current_user.id %>
+            <%= link_to("Collection de "+@user.pseudo, item_collection_path(@user.item_collections.first), :class => "btn btn-default") %>
+        <% end %>
+    <% end %>
+<% else %>
+    <%= link_to("Collection de "+@user.pseudo, item_collection_path(@user.item_collections.first), :class => "btn btn-default") %>
+<% end %>
+<% unless current_user.nil? %>
+    <% if current_user.id == @user.id %>
+        <%= link_to("Modifier", edit_user_registration_path, :class => "btn btn-default") %>
+    <% end %>
+<% end %>
