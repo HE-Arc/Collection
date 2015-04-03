@@ -1,32 +1,32 @@
 <%= form_for([@track.cd, @track]) do |f| %>
-  <% if @track.errors.any? %>
-    <div class="alert alert-danger alert-block">
-      <button type="button" class="close" data-dismiss="alert">x</button>
-      <h4><%= pluralize(@track.errors.count, "error") %> prohibited this track from being saved:</h4>
-      <ul>
-        <% @track.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label "N°" %><br>
-    <% if @track.track_number.nil? %>
-      <%= f.number_field :track_number, :value => (Track.where(cd_id: @track.cd_id).size + 1), :class => 'input form-control'%>
-    <% else %>
-      <%= f.number_field :track_number, :class => 'input form-control'%>
+    <% if @track.errors.any? %>
+        <div class="alert alert-danger alert-block">
+          <button type="button" class="close" data-dismiss="alert">x</button>
+          <h4><%= pluralize(@track.errors.count, "erreur") %> ont empechés la sauvegarde de cette piste:</h4>
+          <ul>
+            <% @track.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
     <% end %>
-  </div>
 
-  <div class="field">
-    <%= f.label "Titre" %><br>
-    <%= f.text_field :title, :autofocus => true, :class => 'input form-control'%>
-  </div>
+    <div class="field">
+      <%= f.label "N°" %><br>
+      <% if @track.track_number.nil? %>
+          <%= f.number_field :track_number, :value => (Track.where(cd_id: @track.cd_id).size + 1), :class => 'input form-control' %>
+      <% else %>
+          <%= f.number_field :track_number, :class => 'input form-control' %>
+      <% end %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Enregistrer",:class=>"btn btn-success"%>
-  </div>
+    <div class="field">
+      <%= f.label "Titre" %><br>
+      <%= f.text_field :title, :autofocus => true, :class => 'input form-control' %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Enregistrer", :class => "btn btn-success" %>
+    </div>
 
 <% end %>

@@ -1,7 +1,7 @@
 <%= form_for(@item_collection) do |f| %>
   <% if @item_collection.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@item_collection.errors.count, "error") %> prohibited this item_collection from being saved:</h2>
+      <h2><%= pluralize(@item_collection.errors.count, "erreur") %> ont empechés la sauvegarde de cette collection:</h2>
 
       <ul>
       <% @item_collection.errors.full_messages.each do |message| %>

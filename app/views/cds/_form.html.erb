@@ -2,7 +2,7 @@
     <% if @cd.errors.any? %>
         <div class="alert alert-danger alert-block">
           <button type="button" class="close" data-dismiss="alert">x</button>
-          <h4><%= pluralize(@cd.errors.count, "error") %> prohibited this cd from being saved:</h4>
+          <h4><%= pluralize(@cd.errors.count, "erreur") %> ont empechés la sauvegarde de ce CD:</h4>
           <ul>
             <% @cd.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
