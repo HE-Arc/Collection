@@ -1,7 +1,17 @@
 module ApplicationHelper
   def bootstrap_class_for flash_type
     # if the alert level is not indicated, it's by default a success, we do this because all our "notice" doesn't provide an alert level
-    {success: "alert-success", error: "alert-danger", alert: "alert-warning", notice: "alert-info"}[flash_type] || 'success'
+
+    result = flash_type
+    case flash_type
+      when "alert"
+        result = "warning"
+      when "notice"
+        result = "success"
+      when "error"
+        result = "danger"
+      else
+    end
   end
 
   def flash_messages(opts = {})
