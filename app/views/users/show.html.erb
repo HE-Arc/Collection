@@ -1,11 +1,13 @@
+<h2>Profil de l'utilisateur <%= @user.pseudo %></h2>
+
 <p>
   <strong>Nom:</strong>
-  <%= @user.name %>
+  <%= @user.name.blank? ? "-" : @user.name %>
 </p>
 
 <p>
-  <strong>Prenom:</strong>
-  <%= @user.firstname %>
+  <strong>Prénom:</strong>
+  <%= @user.firstname.blank? ? "-" : @user.firstname %>
 </p>
 
 <p>
@@ -22,7 +24,7 @@
 
     <% unless current_user.nil? %>
         <% if @item_collection.user_id == current_user.id %>
-            <%= link_to("Collection de "+@user.pseudo, item_collection_path(@user.item_collections.first), :class => "btn btn-default") %>
+            <%= link_to("Collection de "+@user.pseudo, item_collection_path(@user.item_collections.first), :class => "btn btn-primary") %>
         <% end %>
     <% end %>
 <% else %>

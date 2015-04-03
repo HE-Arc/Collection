@@ -71,7 +71,7 @@
                       <li><span class="metadata-header">Genre</span><%= cd.gender %></li>
 
                       <li>
-                        <span class="metadata-header">Nombre de pistes</span><%= cd.tracks.size unless cd.tracks.blank? %>
+                        <span class="metadata-header">Nombre de pistes</span><%= cd.tracks.blank? ? "-" : cd.tracks.size %>
                       </li>
                     </ul>
                   </div>

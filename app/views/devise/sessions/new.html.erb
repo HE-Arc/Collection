@@ -3,12 +3,12 @@
 <%= form_for(:user, :url => session_path(:user)) do |f| %>
 
     <div class="input field form-group">
-      <%= f.label :email %><br/>
+      <%= f.label "Adresse email" %><br/>
       <%= f.email_field :email, autofocus: true, :class => 'form-control', :placeholder => "Email" %>
     </div>
 
     <div class="input field form-group">
-      <%= f.label :password %><br/>
+      <%= f.label "Mot de passe" %><br/>
       <%= f.password_field :password, autocomplete: "off", :class => 'form-control', :placeholder => "mot de passe" %>
       <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
           <%= link_to "mot de passe oublié?", new_password_path(resource_name) %><br/>
@@ -24,7 +24,7 @@
     <% end -%>
 
     <div class="actions">
-      <%= f.submit "se connecter", :class => "btn btn-default" %>
-      <%= link_to "s'enregistrer", new_registration_path(resource_name), :class => "btn btn-default" %>
+      <%= f.submit "Se connecter", :class => "btn btn-primary" %>
+      <%= link_to "S'enregistrer", new_registration_path(resource_name), :class => "btn btn-default" %>
     </div>
 <% end %>
