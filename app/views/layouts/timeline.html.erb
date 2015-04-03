@@ -2,9 +2,6 @@
 
 <% if @cds.nil? || @cds.size == 0 %>
     <h4>Aucun élément présent dans cette collection</h4>
-<%if current_user.id == @item_collection.user_id%>
-    <%= link_to 'Ajouter un CD', new_cd_path(:item_collection => @item_collection), :class => 'btn btn-success' %>
-<%end%>
 <% else %>
     <div class="row">
       <div class="pull-right">
@@ -91,7 +88,7 @@
                         Voir en détails <i class="glyphicon glyphicon-triangle-right"></i>
                     <% end %>
 
-                    <%= link_to cd_path(cd), :class => 'button btn btn-default', :confirm => 'Are you sure?', :method => :delete do %>
+                    <%= link_to cd_path(cd), :class => 'button btn btn-default', data: {confirm: "Etes-vous sûr?"}, :method => :delete do %>
                         Supprimer <i class="glyphicon glyphicon-trash"></i>
                     <% end %>
                   </div>
