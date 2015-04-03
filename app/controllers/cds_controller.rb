@@ -73,7 +73,7 @@ class CdsController < ApplicationController
   def destroy
     @cd.destroy
     respond_to do |format|
-      format.html { redirect_to cds_url, notice: 'Cd was successfully destroyed.' }
+      format.html { redirect_to cds_url, notice: 'Le CD été supprimé correctement.' }
       format.json { head :no_content }
     end
   end
