@@ -1,8 +1,8 @@
 <%= form_for([@track.cd, @track]) do |f| %>
   <% if @track.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@track.errors.count, "error") %> prohibited this track from being saved:</h2>
-
+    <div class="alert alert-danger alert-block">
+      <button type="button" class="close" data-dismiss="alert">x</button>
+      <h4><%= pluralize(@track.errors.count, "error") %> prohibited this track from being saved:</h4>
       <ul>
         <% @track.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -14,15 +14,15 @@
   <div class="field">
     <%= f.label "N°" %><br>
     <% if @track.track_number.nil? %>
-      <%= f.number_field :track_number, :value => (Track.where(cd_id: @track.cd_id).size + 1) %>
+      <%= f.number_field :track_number, :value => (Track.where(cd_id: @track.cd_id).size + 1), :class => 'input form-control'%>
     <% else %>
-      <%= f.number_field :track_number%>
+      <%= f.number_field :track_number, :class => 'input form-control'%>
     <% end %>
   </div>
 
   <div class="field">
     <%= f.label "Titre" %><br>
-    <%= f.text_field :title, :autofocus => true%>
+    <%= f.text_field :title, :autofocus => true, :class => 'input form-control'%>
   </div>
 
   <div class="actions">
