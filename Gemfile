@@ -42,8 +42,7 @@ gem 'capistrano-rails', group: :development
 gem 'capistrano-rvm', group: :development
 gem 'capistrano-passenger', group: :development
 
-#security
-gem 'htmlentities', '~> 4.3.3'
+gem 'rails-i18n'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]

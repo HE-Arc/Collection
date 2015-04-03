@@ -31,6 +31,8 @@
 <%else%>
   <%= link_to("Collection de "+@user.pseudo, item_collection_path(@user.item_collections.first),:class=>"btn btn-default") %>
 <%end%>
-<%if current_user.id == @user.id%>
-  <%= link_to("Modifier", edit_user_registration_path,:class=>"btn btn-default") %>
+<% unless current_user==nil%>
+    <%if current_user.id == @user.id%>
+      <%= link_to("Modifier", edit_user_registration_path,:class=>"btn btn-default") %>
+    <%end%>
 <%end%>
