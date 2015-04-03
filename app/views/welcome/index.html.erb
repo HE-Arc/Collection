@@ -1,3 +1,4 @@
 <h1 class="text-center">Collection de <%=@collection_owner_pseudo%></h1>
-
+<%unless @collection_item.nil?%>
 <%= render template: "layouts/timeline" %>
+<%end%>
