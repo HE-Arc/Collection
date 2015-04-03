@@ -38,5 +38,7 @@
     <% end %>
   </tbody>
 </table>
-
+<%if @users.size==0 %>
+<p class="text-center">Aucun utilisateur ne correspond à votre recherche</p>
+<% end %>
 <br>

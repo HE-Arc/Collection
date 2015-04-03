@@ -24,7 +24,9 @@ class ItemCollectionsController < ApplicationController
   def index
     @item_collections = ItemCollection.where('is_private=false')
    if !params[:search].nil? || params[:search] == ''
-     @item_collections = ItemCollection.where('name LIKE ? AND is_private=false', "%#{params[:search]}%")
+      t = ItemCollection.arel_table
+     @item_collections = ItemCollection.where(t[:name].matches("%#{params[:search]}%").and(t[:is_private].eq(false)))
+     #@item_collections = ItemCollection.where('name LIKE ? AND is_private=false', "%#{params[:search]}%")
    end
   end
 

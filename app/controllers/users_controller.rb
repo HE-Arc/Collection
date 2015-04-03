@@ -15,8 +15,8 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     if !params[:search].nil? || params[:search] == ''
-      #@users = User.where("pseudo LIKE '#{params[:search]}'").all
-      @users = User.where('pseudo LIKE ?', "%#{params[:search]}%").all
+      t = User.arel_table
+      @users = User.where(t[:pseudo].matches("%#{params[:search]}%")).all
     end
   end
 

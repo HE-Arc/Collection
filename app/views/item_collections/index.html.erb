@@ -34,5 +34,7 @@
     <% end %>
   </tbody>
 </table>
-
+<%if @item_collections.size==0 %>
+<p class="text-center">Aucune collection ne correspond à votre recherche</p>
+<% end %>
 <br>
