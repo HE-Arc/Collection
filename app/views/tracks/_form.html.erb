@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label "N°" %>
+    <%= f.label "N°" %><br>
     <% if @track.track_number.nil? %>
       <%= f.number_field :track_number, :value => (Track.where(cd_id: @track.cd_id).size + 1) %>
     <% else %>
@@ -21,7 +21,7 @@
   </div>
 
   <div class="field">
-    <%= f.label "Titre" %>
+    <%= f.label "Titre" %><br>
     <%= f.text_field :title %>
   </div>
 
