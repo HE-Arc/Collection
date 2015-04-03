@@ -98,7 +98,7 @@ class ItemCollectionsController < ApplicationController
 
     respond_to do |format|
       if @item_collection.update(item_collection_params)
-        format.html { redirect_to @item_collection, notice: 'Item collection was successfully updated.' }
+        format.html { redirect_to @item_collection, notice: 'La collection a été mise à jour ' }
         format.json { render :show, status: :ok, location: @item_collection }
       else
         format.html { render :edit }
@@ -112,7 +112,7 @@ class ItemCollectionsController < ApplicationController
   def destroy
     @item_collection.destroy
     respond_to do |format|
-      format.html { redirect_to item_collections_url, notice: 'Item collection was successfully destroyed.' }
+      format.html { redirect_to item_collections_url, notice: 'La collection a été détruite' }
       format.json { head :no_content }
     end
   end

@@ -45,7 +45,7 @@ class CdsController < ApplicationController
 
     respond_to do |format|
       if @cd.save
-        format.html { redirect_to @cd, notice: 'Cd was successfully created.' }
+        format.html { redirect_to @cd, notice: 'Le CD a été créé avec succès' }
         format.json { render :show, status: :created, location: @cd }
       else
         format.html { render :new }
@@ -59,7 +59,7 @@ class CdsController < ApplicationController
   def update
     respond_to do |format|
       if @cd.update(cd_params)
-        format.html { redirect_to @cd, notice: 'Cd was successfully updated.' }
+        format.html { redirect_to @cd, notice: 'Le CD a été mise à jour' }
         format.json { render :show, status: :ok, location: @cd }
       else
         format.html { render :edit }
