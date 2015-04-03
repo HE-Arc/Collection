@@ -1,7 +1,7 @@
 <% unless current_user==nil %>
     <% if current_user.id == @item_collection.user_id %>
         <%= link_to 'Modifier la collection', edit_item_collection_path(@item_collection), :class => 'btn btn-success' %>
-        <%= link_to 'Ajouter un CD', new_cd_path(:item_collection => @item_collection), :class => 'btn btn-success' %>
+        <%= link_to 'Ajouter un CD', new_cd_path, :class => 'btn btn-success' %>
     <% end %>
 <% end %>
 

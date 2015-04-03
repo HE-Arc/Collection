@@ -1,5 +1,6 @@
 class CdsController < ApplicationController
   before_action :set_cd, only: [:show, :edit, :update, :destroy]
+  before_action :set_collection_item
   before_action :authenticate_user!, except: [:index, :show]
   before_filter :require_permission, only: [:edit, :update, :destroy]
 
@@ -23,13 +24,6 @@ class CdsController < ApplicationController
 
   # GET /cds/new
   def new
-    @item_collection_id = params[:item_collection]
-    item_collection_param = ItemCollection.find_by_id(@item_collection_id)
-
-    if item_collection_param.nil? || (item_collection_param.user_id != current_user.id)
-      flash[:error] = "Vous n'avez pas la permission d'ajouter de CD sur cette collection"
-      redirect_to root_path
-    end
     @cd = Cd.new
   end
 
@@ -82,6 +76,12 @@ class CdsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_cd
     @cd = Cd.find(params[:id])
+  end
+
+  private
+  def set_collection_item
+    item_collection_param = get_user_default_collection(current_user.id)
+    @item_collection_id = item_collection_param.id
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
