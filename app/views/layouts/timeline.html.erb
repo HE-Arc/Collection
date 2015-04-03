@@ -1,58 +1,48 @@
-<h1 class="text-center"><%= @collection_name %></h1>
+<h2 class="text-center"><%= @collection_name %></h2>
 
 <% if @cds.nil? || @cds.size == 0 %>
     <h4>Aucun élément présent dans cette collection</h4>
     <%= link_to 'Ajouter un CD', new_cd_path(:item_collection => @item_collection), :class => 'btn btn-success' %>
 <% else %>
     <div class="row">
-      <div class="dropdown" id="dd-menu-sort">
-        <button class="btn btn-default dropdown-toggle" type="button" id="dd-menu-sort-btn" data-toggle="dropdown" aria-expanded="true">
-          Choisir un tri
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="dd-menu-sort-btn">
-          <li role="presentation">
-            <%= link_to 'Trier par date d\'ajout croissant', params.merge('sort' => 'nameDesc'), :role => 'menuitem' %>
-          </li>
-          <li role="presentation">
-            <%= link_to 'Trier par date d\'ajout décroissant', params.merge('sort' => 'dateDesc'), :role => 'menuitem' %>
-          </li>
+      <div class="pull-right">
+                <div class="input-group add-on">
+            <%= form_tag item_collections_path, :method => 'get',:class=>"form-inline" do %>
+                    <div class="dropdown" id="dd-menu-sort">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dd-menu-sort-btn" data-toggle="dropdown" aria-expanded="true">
+            Choisir un tri
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dd-menu-sort-btn">
+            <li role="presentation">
+              <%= link_to 'Trier par date d\'ajout croissant', params.merge('sort' => 'nameDesc'), :role => 'menuitem' %>
+            </li>
+            <li role="presentation">
+              <%= link_to 'Trier par date d\'ajout décroissant', params.merge('sort' => 'dateDesc'), :role => 'menuitem' %>
+            </li>
 
-          <li role="presentation">
-            <%= link_to 'Trier par nom croissant', params.merge('sort' => 'name'), :role => 'menuitem' %>
-          </li>
-          <li role="presentation">
-            <%= link_to 'Trier par nom décroissant', params.merge('sort' => 'nameDesc'), :role => 'menuitem' %>
-          </li>
-        </ul>
-              <div class="pull-right input-group add-on">
-          <%= form_tag item_collections_path, :method => 'get',:class=>"form-inline" do %>
-          <div class="form-group input-group add-on">
-            <%= text_field_tag :search, params[:search],:class=>"form-control",:placeholder=>"Nom de la collection" %>
-            <div class="input-group-btn">
-            <button class="btn btn-default bg-blue" type="submit"><i class="glyphicon glyphicon-search white"></i>        </button>
+            <li role="presentation">
+              <%= link_to 'Trier par nom croissant', params.merge('sort' => 'name'), :role => 'menuitem' %>
+            </li>
+            <li role="presentation">
+              <%= link_to 'Trier par nom décroissant', params.merge('sort' => 'nameDesc'), :role => 'menuitem' %>
+            </li>
+          </ul>
+            <div class="form-group input-group add-on">
+              <%= text_field_tag :search, params[:search],:class=>"form-control",:placeholder=>"Nom de la collection" %>
+              <div class="input-group-btn">
+              <button class="btn btn-default bg-blue" type="submit"><i class="glyphicon glyphicon-search white"></i>        </button>
+              </div>
             </div>
-          </div>
-          <%end%>
-          </div>
+            <%end%>
+            </div>
+        </div>
       </div>
     </div>
 
     <% @badge_colors = "warning,danger,success,default".split(",") %>
     <ul class="timeline">
-      <% i = 1 %>
-      <li <%= raw 'class="timeline-inverted"' if i%2!=0 %>>
-        <div class="timeline-badge <%= @badge_colors.sample %>"><i class="glyphicon glyphicon-cd"></i></div>
-        <div class="timeline-panel">
-          <div class="timeline-body">
-            <%= link_to new_cd_path(:item_collection => @item_collection) do %>
-                <div class="text-center add-cd-icon">
-                  <span class="glyphicon glyphicon-plus"></span>
-                </div>
-            <% end %>
-          </div>
-        </div>
-      </li>
+      <%i=1%>
       <% @cds.each do |cd| %>
           <% i+= 1 %>
           <li <%= raw 'class="timeline-inverted"' if i%2==0 %>>

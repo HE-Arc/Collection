@@ -4,6 +4,7 @@ class WelcomeController < ApplicationController
     @collection_item = ItemCollection.get_last_public_collection
 
     unless @collection_item.nil?
+      @collection_owner_pseudo=User.find(@collection_item.user_id).pseudo
       @collection_name=@collection_item.name
       @cds=Cd.where("item_collection_id = ?", @collection_item.id)
       sort = params[:sort]
