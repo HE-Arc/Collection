@@ -2,7 +2,7 @@ class ItemCollectionsController < ApplicationController
   before_action :set_item_collection, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
   before_filter :require_permission, only: [:edit, :update, :destroy]
-  before_filter :checkPrivacy, only: [:show]
+  before_filter :check_privacy, only: [:show]
 
   def require_permission
     if current_user.id != ItemCollection.find(params[:id]).user_id
@@ -10,9 +10,9 @@ class ItemCollectionsController < ApplicationController
     end
   end
 
-  def checkPrivacy
+  def check_privacy
     if ItemCollection.find(params[:id]).is_private
-      if current_user.id != ItemCollection.find(params[:id]).user_id
+      if current_user.nil? || current_user.id != ItemCollection.find(params[:id]).user_id
         redirect_to root_path
       end
     end
