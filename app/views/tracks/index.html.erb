@@ -1,27 +1,45 @@
-<h1>Tracks</h1>
+<h1>
+  <%= pluralize(@cd.tracks.size,"Piste") %>
+  <%= link_to new_cd_track_path(@cd) , :class=>"btn btn-default" do%>
+    <i class="glyphicon glyphicon-plus black"></i>
+  <% end %>
+</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>N°</th>
-      <th>Title</th>
-      <th>Options</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @tracks.each do |track| %>
+
+<% if @cd.tracks.empty? %>
+  <p>Vous n'avez encore aucune piste</p>
+<% else %>
+  <table class="table table-hover">
+    <thead>
+
       <tr>
-        <td><%= track.track_number %></td>
-        <td><%= track.title %></td>
-        <td><%= link_to 'Edit', edit_cd_track_path(track.cd_id, track) %></td>
-        <td><%= link_to 'Destroy', cd_track_path(track.cd_id, track), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>#</th>
+        <th>Titre</th>
+        
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<%= link_to 'Ajouter une piste', new_cd_track_path(@cd) %>
+    <tbody>
+      <% @tracks.each do |track| %>
+        <tr>
+          <td><%= track.track_number %></td>
+          <td><%= track.title %></td>
+          <td class="text-right">
+            <%= link_to edit_cd_track_path(track.cd_id, track) do %>
+              <i class="glyphicon glyphicon-edit black"></i>
+            <% end %>
+
+            <%= link_to cd_track_path(track.cd_id, track), method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <i class="glyphicon glyphicon-trash black"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
 
 
