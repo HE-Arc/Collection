@@ -1,7 +1,7 @@
 class ItemCollectionsController < ApplicationController
   before_action :set_item_collection, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index,:show]
-  before_filter :require_permission, only: [:edit,:update,:destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_filter :require_permission, only: [:edit, :update, :destroy]
   before_filter :checkPrivacy, only: [:show]
 
   def require_permission
@@ -9,25 +9,25 @@ class ItemCollectionsController < ApplicationController
       redirect_to root_path
     end
   end
-  
+
   def checkPrivacy
     if ItemCollection.find(params[:id]).is_private
-       if current_user.id != ItemCollection.find(params[:id]).user_id
-          redirect_to root_path
-       end
+      if current_user.id != ItemCollection.find(params[:id]).user_id
+        redirect_to root_path
+      end
     end
   end
-  
+
 
   # GET /item_collections
   # GET /item_collections.json
   def index
     @item_collections = ItemCollection.where('is_private=false')
-   if !params[:search].nil? || params[:search] == ''
+    if !params[:search].nil? || params[:search] == ''
       t = ItemCollection.arel_table
-     @item_collections = ItemCollection.where(t[:name].matches("%#{params[:search]}%").and(t[:is_private].eq(false)))
-     #@item_collections = ItemCollection.where('name LIKE ? AND is_private=false', "%#{params[:search]}%")
-   end
+      @item_collections = ItemCollection.where(t[:name].matches("%#{params[:search]}%").and(t[:is_private].eq(false)))
+      #@item_collections = ItemCollection.where('name LIKE ? AND is_private=false', "%#{params[:search]}%")
+    end
   end
 
   # GET /item_collections/1
@@ -40,6 +40,29 @@ class ItemCollectionsController < ApplicationController
     @collection_name=@item_collection.name
     @item_collection_id = @item_collection.id
     @cds = @item_collection.cds
+
+    sort = params[:sort]
+    if sort.nil? || sort == ''
+      @cds = @cds.order('created_at DESC')
+    else
+      case sort
+        when 'date'
+          @cds = @cds.order('created_at')
+        when 'dateDesc'
+          @cds = @cds.order('created_at DESC')
+        when 'name'
+          @cds = @cds.order('name')
+        when 'nameDesc'
+          @cds = @cds.order('name DESC')
+
+        when 'purchaseDate'
+          @cds = @cds.order('purchaseDate')
+        when 'purchaseDateDesc'
+          @cds = @cds.order('purchaseDate DESC')
+        else
+          @cds = @cds.order('created_at DESC')
+      end
+    end
   end
 
   # GET /item_collections/new
@@ -72,7 +95,7 @@ class ItemCollectionsController < ApplicationController
   # PATCH/PUT /item_collections/1.json
   def update
     @item_collection = ItemCollection.find(params[:id])
-    
+
     respond_to do |format|
       if @item_collection.update(item_collection_params)
         format.html { redirect_to @item_collection, notice: 'Item collection was successfully updated.' }
@@ -95,13 +118,13 @@ class ItemCollectionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_item_collection
-      @item_collection = ItemCollection.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_item_collection
+    @item_collection = ItemCollection.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def item_collection_params
-      params.require(:item_collection).permit(:name, :beginDate, :user_id,:is_private)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def item_collection_params
+    params.require(:item_collection).permit(:name, :beginDate, :user_id, :is_private)
+  end
 end
