@@ -80,7 +80,7 @@
                       <li><span class="metadata-header">Année</span><%= cd.year %></li>
                       <li><span class="metadata-header">Genre</span><%= cd.gender %></li>
 
-                      <li><span class="metadata-header">Nombre de pistes</span><%= cd.tracks.size if cd.tracks.blank? %>
+                      <li><span class="metadata-header">Nombre de pistes</span><%= cd.tracks.size unless cd.tracks.blank? %>
                       </li>
                     </ul>
                   </div>

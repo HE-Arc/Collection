@@ -1,6 +1,6 @@
 class Cd < ActiveRecord::Base
   belongs_to :item_collection
-  has_many :tracks
+  has_many :tracks, dependent: :destroy
 
   validates_presence_of :name, :artist, :editor, :gender
   
