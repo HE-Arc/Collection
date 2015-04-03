@@ -1,52 +1,47 @@
 <h2>Nouveau compte</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-<% flash.each do |name, msg| %>
-<%= content_tag :div, msg, :id => "flash_alert" if msg.is_a?(String) %>
-<% end %>
+    <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :nom %><br />
-    <%= f.text_field :name, autofocus: true,:class=>'input form-control',:placeholder => "nom" %>
-  </div>
+    <div class="field">
+      <%= f.label :nom %><br/>
+      <%= f.text_field :name, autofocus: true, :class => 'input form-control', :placeholder => "nom" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :prenom %><br />
-    <%= f.text_field :firstname, autofocus: true ,:class=>'input form-control',:placeholder => "prenom"%>
-  </div>
+    <div class="field">
+      <%= f.label :prenom %><br/>
+      <%= f.text_field :firstname, autofocus: true, :class => 'input form-control', :placeholder => "prenom" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :pseudo %><br />
-    <%= f.text_field :pseudo, autofocus: true ,:class=>'input form-control',:placeholder => "pseudo"%>
-  </div>
+    <div class="field">
+      <%= f.label :pseudo %><br/>
+      <%= f.text_field :pseudo, autofocus: true, :class => 'input form-control', :placeholder => "pseudo" %>
+    </div>
 
-  <div class="field">
-    <%= f.label "Date de naissance" %><br>
-    <%= f.date_select :birthdate,default: -20.years.from_now, :start_year=>Date.today.year - 100, :end_year => Time.now.year%>
-  </div>
+    <div class="field">
+      <%= f.label "Date de naissance" %><br>
+      <%= f.date_select :birthdate, default: -20.years.from_now, :start_year => Date.today.year - 100, :end_year => Time.now.year %>
+    </div>
 
+    <div class="field">
+      <%= f.label :email %><br/>
+      <%= f.email_field :email, autofocus: true, :class => 'input form-control', :placeholder => "Email" %>
+    </div>
 
+    <div class="field">
+      <%= f.label :password %>
+      <% if @validatable %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br/>
+      <%= f.password_field :password, autocomplete: "off", :class => 'input form-control', :placeholder => "mot de passe", :validate => true %>
+    </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true,:class=>'input form-control',:placeholder => "Email" %>
-  </div>
+    <div class="field">
+      <%= f.label :password_confirmation %><br/>
+      <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'input form-control', :placeholder => "confirmation mot de passe" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @validatable %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" ,:class=>'input form-control',:placeholder => "mot de passe",:validate => true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off",:class=>'input form-control',:placeholder => "confirmation mot de passe"%>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "s'enregistrer", :class=>"btn btn-success" %>
-  </div>
+    <div class="actions">
+      <%= f.submit "s'enregistrer", :class => "btn btn-success" %>
+    </div>
 <% end %>

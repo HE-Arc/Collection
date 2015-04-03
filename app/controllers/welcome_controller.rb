@@ -1,6 +1,5 @@
 class WelcomeController < ApplicationController
   def index
-    #TODO: get random public not nil Collection
     @collection_item = ItemCollection.get_last_public_collection
 
     if @collection_item.nil?
