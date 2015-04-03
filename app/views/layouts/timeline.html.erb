@@ -5,43 +5,44 @@
 <% else %>
     <div class="row">
       <div class="pull-right">
-                <div class="input-group add-on">
-            <%= form_tag item_collections_path, :method => 'get',:class=>"form-inline" do %>
-                    <div class="dropdown" id="dd-menu-sort">
-          <button class="btn btn-default dropdown-toggle" type="button" id="dd-menu-sort-btn" data-toggle="dropdown" aria-expanded="true">
-            Choisir un tri
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" role="menu" aria-labelledby="dd-menu-sort-btn">
-            <li role="presentation">
-              <%= link_to 'Trier par date d\'ajout croissant', params.merge('sort' => 'nameDesc'), :role => 'menuitem' %>
-            </li>
-            <li role="presentation">
-              <%= link_to 'Trier par date d\'ajout décroissant', params.merge('sort' => 'dateDesc'), :role => 'menuitem' %>
-            </li>
+        <div class="input-group add-on">
+          <%= form_tag item_collections_path, :method => 'get', :class => "form-inline" do %>
+              <div class="dropdown" id="dd-menu-sort">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dd-menu-sort-btn" data-toggle="dropdown" aria-expanded="true">
+                  Choisir un tri
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dd-menu-sort-btn">
+                  <li role="presentation">
+                    <%= link_to 'Trier par date d\'ajout croissant', params.merge('sort' => 'nameDesc'), :role => 'menuitem' %>
+                  </li>
+                  <li role="presentation">
+                    <%= link_to 'Trier par date d\'ajout décroissant', params.merge('sort' => 'dateDesc'), :role => 'menuitem' %>
+                  </li>
 
-            <li role="presentation">
-              <%= link_to 'Trier par nom croissant', params.merge('sort' => 'name'), :role => 'menuitem' %>
-            </li>
-            <li role="presentation">
-              <%= link_to 'Trier par nom décroissant', params.merge('sort' => 'nameDesc'), :role => 'menuitem' %>
-            </li>
-          </ul>
-            <div class="form-group input-group add-on">
-              <%= text_field_tag :search, params[:search],:class=>"form-control",:placeholder=>"Nom de la collection" %>
-              <div class="input-group-btn">
-              <button class="btn btn-default bg-blue" type="submit"><i class="glyphicon glyphicon-search white"></i>        </button>
-              </div>
-            </div>
-            <%end%>
-            </div>
+                  <li role="presentation">
+                    <%= link_to 'Trier par nom croissant', params.merge('sort' => 'name'), :role => 'menuitem' %>
+                  </li>
+                  <li role="presentation">
+                    <%= link_to 'Trier par nom décroissant', params.merge('sort' => 'nameDesc'), :role => 'menuitem' %>
+                  </li>
+                </ul>
+                <div class="form-group input-group add-on">
+                  <%= text_field_tag :search, params[:search], :class => "form-control", :placeholder => "Nom de la collection" %>
+                  <div class="input-group-btn">
+                    <button class="btn btn-default bg-blue" type="submit">
+                      <i class="glyphicon glyphicon-search white"></i></button>
+                  </div>
+                </div>
+          <% end %>
+          </div>
         </div>
       </div>
     </div>
 
     <% @badge_colors = "warning,danger,success,default".split(",") %>
     <ul class="timeline">
-      <%i=1%>
+      <% i=1 %>
       <% @cds.each do |cd| %>
           <% i+= 1 %>
           <li <%= raw 'class="timeline-inverted"' if i%2==0 %>>
@@ -69,7 +70,8 @@
                       <li><span class="metadata-header">Année</span><%= cd.year %></li>
                       <li><span class="metadata-header">Genre</span><%= cd.gender %></li>
 
-                      <li><span class="metadata-header">Nombre de pistes</span><%= cd.tracks.size unless cd.tracks.blank? %>
+                      <li>
+                        <span class="metadata-header">Nombre de pistes</span><%= cd.tracks.size unless cd.tracks.blank? %>
                       </li>
                     </ul>
                   </div>
@@ -88,8 +90,10 @@
                         Voir en détails <i class="glyphicon glyphicon-triangle-right"></i>
                     <% end %>
 
-                    <%= link_to cd_path(cd), :class => 'button btn btn-default', data: {confirm: "Etes-vous sûr?"}, :method => :delete do %>
-                        Supprimer <i class="glyphicon glyphicon-trash"></i>
+                    <% if is_cd_owner(cd) %>
+                        <%= link_to cd_path(cd), :class => 'button btn btn-default', data: {confirm: "Etes-vous sûr?"}, :method => :delete do %>
+                            Supprimer <i class="glyphicon glyphicon-trash"></i>
+                        <% end %>
                     <% end %>
                   </div>
                 </div>

@@ -13,4 +13,35 @@ module ApplicationHelper
     end
     nil
   end
+
+  def is_cd_owner(cd)
+    if current_user.nil? || cd.nil? || cd.id.nil?
+      return false
+    end
+
+    current_user.id == ItemCollection.find(cd.item_collection_id).user_id
+  end
+
+  # #untested
+  # def is_item_collection_owner(item_collection)
+  #   if current_user.nil? || item_collection.nil? || item_collection.id.nil?
+  #     return false
+  #   end
+  #
+  #   current_user.id == item_collection.user_id
+  # end
+  #
+  # # untested
+  # def is_track_owner(track)
+  #   if current_user.nil? || track.nil? || track.id.nil?
+  #     return false
+  #   end
+  #
+  #   cd = Cd.find(track.cd_id)
+  #   if cd.nil?
+  #     return false
+  #   end
+  #
+  #   current_user.id == ItemCollection.find(cd.item_collection_id).user_id
+  # end
 end
