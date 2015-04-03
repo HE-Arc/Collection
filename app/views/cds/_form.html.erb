@@ -25,7 +25,7 @@
     </div>
     <div class="field">
       <%= f.label "Année: " %><br>
-      <%= f.number_field :year, :class => 'input form-control' %>
+      <%= f.number_field :year, :class => 'input form-control', :value => Date.today.year %>
     </div>
     <div class="field">
       <%= f.label "Genre: " %><br>
