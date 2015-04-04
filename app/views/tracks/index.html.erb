@@ -33,13 +33,17 @@
             <td><%= track.track_number %></td>
             <td><%= track.title %></td>
             <td class="text-right">
+              <% if is_cd_owner(@cd) %>
               <%= link_to edit_cd_track_path(track.cd_id, track) do %>
                   <i class="glyphicon glyphicon-edit black"></i>
               <% end %>
+              <%end%>
 
-              <%= link_to cd_track_path(track.cd_id, track), method: :delete, data: {confirm: 'Are you sure?'} do %>
+              <% if is_cd_owner(@cd) %>
+              <%= link_to cd_track_path(track.cd_id, track), method: :delete, data: {confirm: 'êtes vous sûr?'} do %>
                   <i class="glyphicon glyphicon-trash black"></i>
               <% end %>
+              <%end%>
             </td>
           </tr>
       <% end %>
