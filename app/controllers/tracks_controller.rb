@@ -2,7 +2,7 @@ class TracksController < ApplicationController
   before_action :set_track, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index,:show]
   before_filter :require_permission, only: [:edit,:update,:destroy]
-
+  
   def require_permission
     if current_user.id != ItemCollection.find(Cd.find(Track.find(params[:id]).cd_id).item_collection_id).user_id
       redirect_to root_path
@@ -23,6 +23,9 @@ class TracksController < ApplicationController
   # GET /cds/1/tracks/new
   def new
     cd = Cd.find(params[:cd_id])
+    if cd.item_collection_id != get_user_default_collection(current_user.id).id
+      return redirect_to root_path
+    end
     @track = cd.tracks.build
   end
 
