@@ -6,7 +6,6 @@ class UsersController < ApplicationController
   def require_permission
     if current_user.id != User.find(params[:id]).id
       redirect_to root_path
-      #Or do something else here
     end
   end
 
@@ -70,7 +69,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: "L'utilisateur a été correctement détruit." }
+      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

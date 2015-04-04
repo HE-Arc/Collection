@@ -4,10 +4,9 @@ class TracksController < ApplicationController
   before_filter :require_permission, only: [:edit,:update,:destroy]
 
   def require_permission
-    #if current_user.id != ItemCollection.find(Cd.find(Track.find(params[:id]).cd_id).item_collection_id).user_id
-      #redirect_to root_path
-      #Or do something else here
-    #end
+    if current_user.id != ItemCollection.find(Cd.find(Track.find(params[:id]).cd_id).item_collection_id).user_id
+      redirect_to root_path
+    end
   end
 
   # GET /tracks
@@ -41,7 +40,7 @@ class TracksController < ApplicationController
 
     respond_to do |format|
       if @track.save
-        format.html { redirect_to(@track.cd, notice: "La piste a été correctement créée") }
+        format.html { redirect_to(@track.cd, notice: 'Track was successfully created.') }
         format.json { render :show, status: :created, location: @track }
       else
         format.html { render :new }
@@ -55,7 +54,7 @@ class TracksController < ApplicationController
   def update
     respond_to do |format|
       if @track.update(track_params)
-        format.html { redirect_to(@track.cd, notice: "La piste a été correctement mise à jour")}
+        format.html { redirect_to(@track.cd, notice: 'Track was successfully update.')}
         format.json { render :show, status: :ok, location: @track }
       else
         format.html { render :edit }
@@ -69,7 +68,7 @@ class TracksController < ApplicationController
   def destroy
     @track.destroy
     respond_to do |format|
-      format.html { redirect_to(@track.cd, notice: "La piste a été correctement détruite.") }
+      format.html { redirect_to(@track.cd, notice: 'Track was successfully destroyed.') }
       format.json { head :no_content }
     end
   end
