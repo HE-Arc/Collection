@@ -53,7 +53,7 @@ class CdsController < ApplicationController
   def update
     respond_to do |format|
       if @cd.update(cd_params)
-        format.html { redirect_to @cd, notice: 'Le CD a été mise à jour' }
+        format.html { redirect_to @cd, notice: 'Le CD a été mis à jour' }
         format.json { render :show, status: :ok, location: @cd }
       else
         format.html { render :edit }
